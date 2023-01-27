@@ -31,7 +31,12 @@ let automaticUpgrades = [
 ]
 
 function mine(){
-  cheese += 1
+  let mineAmount = 1
+  clickUpgrades.forEach(upgrade => {
+    let amount = upgrade.quantity * upgrade.multiplier
+    mineAmount += amount
+  })
+  cheese += mineAmount
 }
 
 function buyPickaxe(){
@@ -61,8 +66,4 @@ function collectAutoUpgrades(){
 
 function startInterval(){
   setInterval(collectAutoUpgrades, 3000)
-}
-
-if(automaticUpgrades.length == 1){
-  startInterval()
 }
