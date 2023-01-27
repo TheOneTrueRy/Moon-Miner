@@ -1,0 +1,26 @@
+/* SECTION Elements */
+
+body{
+  background-image: url(https://th.bing.com/th/id/R.cf2f49a845212dd14fc588ea87ae1786?rik=7S8kpsDq%2bdl1hA&pid=ImgRaw&r=0);
+  background-size: cover;
+}
+
+h1{
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 5px 0px orange;
+  font-family: 'Righteous', cursive;
+  font-size: 4em;
+}
+
+/* SECTION Classes */
+
+
+
+/* SECTION IDs */
+
+#moon{
+  height: 50vh;
+  width: auto;
+  user-select: none;
+}
