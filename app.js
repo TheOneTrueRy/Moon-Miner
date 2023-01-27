@@ -17,7 +17,7 @@ let clickUpgrades = [
 
 let automaticUpgrades = [
 {
-  name: 'mouse',
+  name: 'mousetronaut',
   price: 100,
   quantity: 0,
   multiplier: 5
@@ -40,19 +40,23 @@ function mine(){
 }
 
 function buyPickaxe(){
-
+  let pickaxe = clickUpgrades.find(object => object.name == 'pickaxe')
+  pickaxe.quantity += 1
 }
 
 function buyDrill(){
-
+  let drill = clickUpgrades.find(object => object.name == 'drill')
+  drill.quantity += 1
 }
 
-function buyMouse(){
-
+function buyMousetronaut(){
+  let mousetronaut = automaticUpgrades.find(object => object.name == 'mousetronaut')
+  mousetronaut.quantity += 1
 }
 
 function buyRover(){
-
+  let rover = automaticUpgrades.find(object => object.name == 'rover')
+  rover.quantity += 1
 }
 
 function collectAutoUpgrades(){
