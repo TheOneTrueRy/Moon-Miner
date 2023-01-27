@@ -46,10 +46,12 @@ function buyPickaxe(){
   if(cheese >= pickaxe.price){
     cheese -= pickaxe.price
     pickaxe.quantity += 1
+    pickaxe.price += 50
   }else{
     window.alert('You gotta up that cheddar, Big Cheese!')
 }
 drawCheese()
+drawUpgrades()
 }
 
 function buyDrill(){
@@ -57,10 +59,12 @@ function buyDrill(){
   if(cheese >= drill.price){
     cheese -= drill.price
     drill.quantity += 1
+    drill.price += 250
   }else{
     window.alert('You gotta up that cheddar, Big Cheese!')
   }
   drawCheese()
+  drawUpgrades()
 }
 
 let upgrades = 0
@@ -71,6 +75,7 @@ function buyMousetronaut(){
     cheese -= mousetronaut.price
     mousetronaut.quantity += 1
     upgrades += 1
+    mousetronaut.price += 100
   }else{
     window.alert('You gotta up that cheddar, Big Cheese!')
   }
@@ -78,6 +83,7 @@ function buyMousetronaut(){
     startInterval()
   }
   drawCheese()
+  drawUpgrades()
 }
 
 function buyRover(){
@@ -86,6 +92,7 @@ function buyRover(){
     cheese -= rover.price
     rover.quantity += 1
     upgrades += 1
+    rover.price += 500
   }else{
     window.alert('You gotta up that cheddar, Big Cheese!')
   }
@@ -93,6 +100,7 @@ function buyRover(){
     startInterval()
   }
   drawCheese()
+  drawUpgrades()
 }
 
 function collectAutoUpgrades(){
@@ -116,4 +124,26 @@ function drawCheese(){
   `
 }
 
+function drawUpgrades(){
+  let mouseElem = document.getElementById('mouseButton')
+  let roverElem = document.getElementById('roverButton')
+  let pickaxeElem = document.getElementById('pickaxeButton')
+  let drillElem = document.getElementById('drillButton')
+  let mouse = automaticUpgrades.find(object => object.name == 'mousetronaut')
+  let rover = automaticUpgrades.find(object => object.name == 'rover')
+  let pickaxe = clickUpgrades.find(object => object.name == 'pickaxe')
+  let drill = clickUpgrades.find(object => object.name == 'drill')
+
+  mouseElem.innerHTML = `${mouse.price}<i class="mdi mdi-cheese"></i>`
+  roverElem.innerHTML = `${rover.price}<i class="mdi mdi-cheese"></i>`
+  pickaxeElem.innerHTML = `${pickaxe.price}<i class="mdi mdi-cheese"></i>`
+  drillElem.innerHTML = `${drill.price}<i class="mdi mdi-cheese"></i>`
+}
+
+function drawStats(){
+
+}
+
 drawCheese()
+drawUpgrades()
+drawStats()
