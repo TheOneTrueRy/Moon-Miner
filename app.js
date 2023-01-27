@@ -49,6 +49,7 @@ function buyPickaxe(){
   }else{
     window.alert('You gotta up that cheddar, Big Cheese!')
 }
+drawCheese()
 }
 
 function buyDrill(){
@@ -59,16 +60,24 @@ function buyDrill(){
   }else{
     window.alert('You gotta up that cheddar, Big Cheese!')
   }
+  drawCheese()
 }
+
+let upgrades = 0
 
 function buyMousetronaut(){
   let mousetronaut = automaticUpgrades.find(object => object.name == 'mousetronaut')
   if(cheese >= mousetronaut.price){
     cheese -= mousetronaut.price
     mousetronaut.quantity += 1
+    upgrades += 1
   }else{
     window.alert('You gotta up that cheddar, Big Cheese!')
   }
+  if(upgrades == 1){
+    startInterval()
+  }
+  drawCheese()
 }
 
 function buyRover(){
@@ -76,9 +85,14 @@ function buyRover(){
   if(cheese >= rover.price){
     cheese -= rover.price
     rover.quantity += 1
+    upgrades += 1
   }else{
     window.alert('You gotta up that cheddar, Big Cheese!')
   }
+  if(upgrades == 1){
+    startInterval()
+  }
+  drawCheese()
 }
 
 function collectAutoUpgrades(){

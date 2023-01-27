@@ -3,19 +3,77 @@
 body{
   background-image: url(https://th.bing.com/th/id/R.cf2f49a845212dd14fc588ea87ae1786?rik=7S8kpsDq%2bdl1hA&pid=ImgRaw&r=0);
   background-size: cover;
+  font-family: 'Righteous', cursive;
 }
 
 h1{
   color: white;
   font-weight: bold;
   text-shadow: 1px 5px 0px orange;
-  font-family: 'Righteous', cursive;
-  font-size: 4em;
+  font-size: 9vh;
 }
 
 /* SECTION Classes */
 
+.upgradeCard{
+  color: white;
+  text-shadow: 1px 1px 5px black;
+  background-color: #fcbb15;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.395);
+}
 
+.upgradeCardBack{
+  background-color: #fec430;
+  height: 25vh;
+  border-radius: 15px;
+  margin-top: -1vh;
+}
+
+.nomb{
+  margin-bottom: 0;
+}
+
+.autoButton{
+  height: 50px;
+  width: 140px;
+  text-align: center;
+  border: 1px solid #da5528;
+  background-color: #f67f59;
+  border-radius: 15px;
+  color: white;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.autoButton:hover{
+  transform: scale(1.1);
+  background-color: #da5528;
+}
+
+.clickButton{
+  height: 50px;
+  width: 140px;
+  text-align: center;
+  border: 1px solid #28a9e0;
+  background-color: #59c7f6;
+  border-radius: 15px;
+  color: white;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.clickButton:hover{
+  transform: scale(1.1);
+  background-color: #28a9e0;
+}
 
 /* SECTION IDs */
 
@@ -23,13 +81,19 @@ h1{
   height: 45vh;
   width: auto;
   user-select: none;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+#moon:hover{
+  transform: scale(1.2);
 }
 
 #cheese{
   color: white;
   font-weight: bold;
   text-shadow: 1px 5px 0px orange;
-  font-family: 'Righteous', cursive;
-  font-size: 3em;
+  font-size: 9vh;
   margin-bottom: 0;
+  margin-top: -2vh;
 }
