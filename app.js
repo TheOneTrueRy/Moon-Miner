@@ -38,6 +38,7 @@ function mine(){
     mineAmount += amount
   })
   cheese += mineAmount
+  drawCheese()
 }
 
 function buyPickaxe(){
@@ -87,8 +88,18 @@ function collectAutoUpgrades(){
     autoTotal += auto
   })
   cheese += autoTotal
+  drawCheese()
 }
 
 function startInterval(){
   setInterval(collectAutoUpgrades, 3000)
 }
+
+function drawCheese(){
+  let cheeseElem = document.getElementById('cheese')
+  cheeseElem.innerHTML = `
+  <i class="mdi mdi-cheese"></i>: ${cheese}
+  `
+}
+
+drawCheese()

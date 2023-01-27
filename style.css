@@ -20,7 +20,16 @@ h1{
 /* SECTION IDs */
 
 #moon{
-  height: 50vh;
+  height: 45vh;
   width: auto;
   user-select: none;
+}
+
+#cheese{
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 5px 0px orange;
+  font-family: 'Righteous', cursive;
+  font-size: 3em;
+  margin-bottom: 0;
 }
