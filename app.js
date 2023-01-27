@@ -1,4 +1,5 @@
 let cheese = 0
+let timerInterval
 
 let clickUpgrades = [
 {
@@ -41,22 +42,42 @@ function mine(){
 
 function buyPickaxe(){
   let pickaxe = clickUpgrades.find(object => object.name == 'pickaxe')
-  pickaxe.quantity += 1
+  if(cheese >= pickaxe.price){
+    cheese -= pickaxe.price
+    pickaxe.quantity += 1
+  }else{
+    window.alert('You gotta up that cheddar, Big Cheese!')
+}
 }
 
 function buyDrill(){
   let drill = clickUpgrades.find(object => object.name == 'drill')
-  drill.quantity += 1
+  if(cheese >= drill.price){
+    cheese -= drill.price
+    drill.quantity += 1
+  }else{
+    window.alert('You gotta up that cheddar, Big Cheese!')
+  }
 }
 
 function buyMousetronaut(){
   let mousetronaut = automaticUpgrades.find(object => object.name == 'mousetronaut')
-  mousetronaut.quantity += 1
+  if(cheese >= mousetronaut.price){
+    cheese -= mousetronaut.price
+    mousetronaut.quantity += 1
+  }else{
+    window.alert('You gotta up that cheddar, Big Cheese!')
+  }
 }
 
 function buyRover(){
   let rover = automaticUpgrades.find(object => object.name == 'rover')
-  rover.quantity += 1
+  if(cheese >= rover.price){
+    cheese -= rover.price
+    rover.quantity += 1
+  }else{
+    window.alert('You gotta up that cheddar, Big Cheese!')
+  }
 }
 
 function collectAutoUpgrades(){
