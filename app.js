@@ -77,7 +77,7 @@ function mine(){
     let tntElem = document.getElementById('tntButton')
     tntElem.removeAttribute(`disabled`)
   }  
-  if(cheese >= alien.price && alien.quantity == 0){
+  if((cheese >= alien.price - mineAmount) && alien.quantity == 0){
     let alienElem = document.getElementById('alienButton')
     alienElem.removeAttribute(`disabled`)
   }
@@ -359,10 +359,10 @@ function buyAlien(){
     alienElem.setAttribute(`disabled`, '')
   }
   document.getElementById('alien').removeAttribute('hidden')
+  playBogos()
   drawCheese()
   drawUpgrades()
   drawAlien()
-  playBogos()
 }
 
 
