@@ -358,6 +358,7 @@ function buyAlien(){
     let alienElem = document.getElementById('alienButton')
     alienElem.setAttribute(`disabled`, '')
   }
+  document.getElementById('alien').removeAttribute('hidden')
   drawCheese()
   drawUpgrades()
   drawAlien()
@@ -386,7 +387,6 @@ function drawUpgrades(){
   let pickaxeElem = document.getElementById('pickaxeButton')
   let drillElem = document.getElementById('drillButton')
   let tntElem = document.getElementById('tntButton')
-  let alienElem = document.getElementById('alienButton')
   let pickText = document.getElementById('pickText')
   let roverText = document.getElementById('roverText')
   let drillText = document.getElementById('drillText')
@@ -430,7 +430,7 @@ function drawUpgrades(){
   if(cheese >= 25000){
     alienText.innerHTML = `<p class="nomb">Alien!</p>
     <p class="nomb">Multiply Cheese/s by 2</p>`
-    alienStats.innerHTML = `alien <i class="mdi mdi-arrow-right-bold"></i> ${alien.quantity.toString()}`
+    alienStats.innerHTML = `Alien?`
   }
 
 
@@ -481,7 +481,7 @@ function drawRover(){
 function drawAlien(){
   let alienStats = document.getElementById('alienStats')
   // @ts-ignore
-  alienStats.innerHTML = `Aliens <i class="mdi mdi-arrow-right-bold"></i> ${alien.quantity.toString()}`
+  alienStats.innerHTML = `Alien? <i class="mdi mdi-checkbox-marked green"></i> `
 }
 
 function playClick(){
