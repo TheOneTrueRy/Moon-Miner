@@ -75,6 +75,7 @@ function mine(){
   totalCheese += mineAmount
   drawCheese()
   drawUpgrades()
+  playAudio()
 }
 
 function buyPickaxe(){
@@ -393,6 +394,12 @@ function drawBogos(){
   let bogosStats = document.getElementById('bogosStats')
   // @ts-ignore
   bogosStats.innerHTML = `Aliens <i class="mdi mdi-arrow-right-bold"></i> ${bogos.quantity.toString()}`
+}
+
+function playAudio(){
+  let click = document.getElementById('click-sound')
+  // @ts-ignore
+  click.play();
 }
 
 drawCheese()
