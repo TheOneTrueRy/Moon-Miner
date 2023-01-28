@@ -1,6 +1,7 @@
 let cheese = 0
-let timerInterval
 let totalCheese = 0
+let savedCheese = localStorage.cheese
+let savedTotalCheese = localStorage.totalCheese
 
 let alien = {
   name: 'alien',
@@ -10,39 +11,39 @@ let alien = {
 
 
 let clickUpgrades = [
-{
-  name: 'pickaxe',
-  price: 50,
-  quantity: 0,
-  multiplier: 1
-},
-{
-  name: 'drill',
-  price: 250,
-  quantity: 0,
-  multiplier: 10
-},
-{
-  name: 'tnt',
-  price: 1000,
-  quantity: 0,
-  multiplier: 50,
-}
+  {
+    name: 'pickaxe',
+    price: 50,
+    quantity: 0,
+    multiplier: 1
+  },
+  {
+    name: 'drill',
+    price: 250,
+    quantity: 0,
+    multiplier: 10
+  },
+  {
+    name: 'tnt',
+    price: 1000,
+    quantity: 0,
+    multiplier: 50,
+  }
 ]
 
 let automaticUpgrades = [
-{
-  name: 'mousetronaut',
-  price: 100,
-  quantity: 0,
-  multiplier: 5
-},
-{
-  name: 'rover',
-  price: 500,
-  quantity: 0,
-  multiplier: 25
-}
+  {
+    name: 'mousetronaut',
+    price: 100,
+    quantity: 0,
+    multiplier: 5
+  },
+  {
+    name: 'rover',
+    price: 500,
+    quantity: 0,
+    multiplier: 25
+  }
 ]
 
 let mouse = automaticUpgrades.find(object => object.name == 'mousetronaut')
@@ -50,6 +51,7 @@ let rover = automaticUpgrades.find(object => object.name == 'rover')
 let pickaxe = clickUpgrades.find(object => object.name == 'pickaxe')
 let drill = clickUpgrades.find(object => object.name == 'drill')
 let tnt = clickUpgrades.find(object => object.name == 'tnt')
+
 
 function mine(){
   let mineAmount = 1
@@ -83,8 +85,8 @@ function mine(){
   }
   cheese += mineAmount
   totalCheese += mineAmount
-  drawCheese()
   drawUpgrades()
+  drawCheese()
   playClick()
 }
 
@@ -210,7 +212,7 @@ function buyMousetronaut(){
     cheese -= mousetronaut.price
     mousetronaut.quantity += 1
     upgrades += 1
-    mousetronaut.price += 100
+    mouse.price += 100
   }else{
     window.alert('You gotta up that cheddar, Big Cheese!')
   }
@@ -402,32 +404,32 @@ function drawUpgrades(){
   let autoElem = document.getElementById('autoCheese')
   let clickElem = document.getElementById('clickCheese')
 
-  if(cheese >= 50){
+  if(totalCheese >= 50){
     pickText.innerHTML = `<p class="nomb">Pickaxe!</p>
     <p class="nomb">Click Power +1</p>`
     pickaxeStats.innerHTML = `Pickaxes <i class="mdi mdi-arrow-right-bold"></i> ${pickaxe.quantity.toString()}`
   }
-  if(cheese >= 100){
+  if(totalCheese >= 100){
     mouseText.innerHTML = `<p class="nomb">Mousetronaut!</p>
     <p class="nomb">5 Cheese/s</p>`
     mouseStats.innerHTML = `Mousetronauts <i class="mdi mdi-arrow-right-bold"></i> ${mouse.quantity.toString()}`
   }
-  if(cheese >= 250){
+  if(totalCheese >= 250){
     drillText.innerHTML = `<p class="nomb">Drill!</p>
     <p class="nomb">Click Power +10</p>`
     drillStats.innerHTML = `Drills <i class="mdi mdi-arrow-right-bold"></i> ${drill.quantity.toString()}`
   }
-  if(cheese >= 500){
+  if(totalCheese >= 500){
     roverText.innerHTML = `<p class="nomb">Rover!</p>
     <p class="nomb">25 Cheese/s</p>`
     roverStats.innerHTML = `Rovers <i class="mdi mdi-arrow-right-bold"></i> ${rover.quantity.toString()}`
   }
-  if(cheese >= 1000){
+  if(totalCheese >= 1000){
     tntText.innerHTML = `<p class="nomb">TNT!</p>
     <p class="nomb">Click Power +50</p>`
     tntStats.innerHTML = `TNT <i class="mdi mdi-arrow-right-bold"></i> ${tnt.quantity.toString()}`
   }
-  if(cheese >= 25000){
+  if(totalCheese >= 25000){
     alienText.innerHTML = `<p class="nomb">Alien!</p>
     <p class="nomb">Multiply Cheese/s by 2</p>`
     alienStats.innerHTML = `Alien?`

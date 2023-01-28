@@ -61,6 +61,26 @@ h1{
   background-color: #da5528;
 }
 
+.alienButton{
+  height: 50px;
+  width: 140px;
+  text-shadow: 1px 1px 3px black;
+  text-align: center;
+  border: 1px solid #da5528;
+  background-color: #2dc968;
+  border-radius: 15px;
+  color: white;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.alienButton:hover{
+  transform: scale(1.1);
+  background-color: #da5528;
+}
+
 .clickButton{
   height: 50px;
   width: 140px;
