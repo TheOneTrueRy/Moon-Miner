@@ -66,8 +66,8 @@ h1{
   width: 140px;
   text-shadow: 1px 1px 3px black;
   text-align: center;
-  border: 1px solid #da5528;
-  background-color: #2dc968;
+  border: 1px solid #73b928;
+  background-color: #86d72f;
   border-radius: 15px;
   color: white;
   margin-bottom: 5px;
@@ -78,7 +78,7 @@ h1{
 
 .alienButton:hover{
   transform: scale(1.1);
-  background-color: #da5528;
+  background-color: #73b928;
 }
 
 .clickButton{

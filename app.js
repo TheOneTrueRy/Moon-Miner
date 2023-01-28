@@ -404,32 +404,32 @@ function drawUpgrades(){
   let autoElem = document.getElementById('autoCheese')
   let clickElem = document.getElementById('clickCheese')
 
-  if(totalCheese >= 50){
+  if(cheese >= 50){
     pickText.innerHTML = `<p class="nomb">Pickaxe!</p>
     <p class="nomb">Click Power +1</p>`
     pickaxeStats.innerHTML = `Pickaxes <i class="mdi mdi-arrow-right-bold"></i> ${pickaxe.quantity.toString()}`
   }
-  if(totalCheese >= 100){
+  if(cheese >= 100){
     mouseText.innerHTML = `<p class="nomb">Mousetronaut!</p>
     <p class="nomb">5 Cheese/s</p>`
     mouseStats.innerHTML = `Mousetronauts <i class="mdi mdi-arrow-right-bold"></i> ${mouse.quantity.toString()}`
   }
-  if(totalCheese >= 250){
+  if(cheese >= 250){
     drillText.innerHTML = `<p class="nomb">Drill!</p>
     <p class="nomb">Click Power +10</p>`
     drillStats.innerHTML = `Drills <i class="mdi mdi-arrow-right-bold"></i> ${drill.quantity.toString()}`
   }
-  if(totalCheese >= 500){
+  if(cheese >= 500){
     roverText.innerHTML = `<p class="nomb">Rover!</p>
     <p class="nomb">25 Cheese/s</p>`
     roverStats.innerHTML = `Rovers <i class="mdi mdi-arrow-right-bold"></i> ${rover.quantity.toString()}`
   }
-  if(totalCheese >= 1000){
+  if(cheese >= 1000){
     tntText.innerHTML = `<p class="nomb">TNT!</p>
     <p class="nomb">Click Power +50</p>`
     tntStats.innerHTML = `TNT <i class="mdi mdi-arrow-right-bold"></i> ${tnt.quantity.toString()}`
   }
-  if(totalCheese >= 25000){
+  if(cheese >= 25000){
     alienText.innerHTML = `<p class="nomb">Alien!</p>
     <p class="nomb">Multiply Cheese/s by 2</p>`
     alienStats.innerHTML = `Alien?`
