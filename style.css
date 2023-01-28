@@ -125,6 +125,10 @@ h1{
   transform: scale(1.2);
 }
 
+#moon:active{
+  transform: scale(1.1);
+}
+
 #cheese{
   color: white;
   font-weight: bold;
