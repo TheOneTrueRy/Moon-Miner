@@ -429,9 +429,9 @@ function drawUpgrades(){
     <p class="nomb">Click Power +50</p>`
     tntStats.innerHTML = `TNT <i class="mdi mdi-arrow-right-bold"></i> ${tnt.quantity.toString()}`
   }
-  if(cheese >= 25000){
+  if(cheese >= 25000 && alien.quantity == 0){
     alienText.innerHTML = `<p class="nomb">Alien!</p>
-    <p class="nomb">Multiply Cheese/s by 2</p>`
+    <p class="nomb">Cheese/s * 2</p>`
     alienStats.innerHTML = `Alien?`
   }
 
