@@ -18,7 +18,7 @@ let clickUpgrades = [
 },
 {
   name: 'tnt',
-  price: 500,
+  price: 1000,
   quantity: 0,
   multiplier: 50,
 }
@@ -117,7 +117,7 @@ function buyTNT(){
   if(cheese >= tnt.price){
     cheese -= tnt.price
     tnt.quantity += 1
-    tnt.price += 500
+    tnt.price += 1000
   }else{
     window.alert('You gotta up that cheddar, Big Cheese!')
 }
@@ -297,10 +297,12 @@ function startInterval(){
 function drawCheese(){
   let cheeseElem = document.getElementById('cheese')
   let totalElem = document.getElementById('totalCheese')
+  let title = document.getElementById('title')
   totalElem.innerText = `Total Cheese Mined: ${totalCheese.toString()}`
   cheeseElem.innerHTML = `
   <i class="mdi mdi-cheese"></i>: ${cheese}
   `
+  title.innerText = `Moon Miner - ${cheese.toString()}🧀`
 }
 
 function drawUpgrades(){
@@ -342,7 +344,7 @@ function drawUpgrades(){
     <p class="nomb">25 Cheese per 2s</p>`
     roverStats.innerHTML = `Rovers <i class="mdi mdi-arrow-right-bold"></i> ${rover.quantity.toString()}`
   }
-  if(cheese >= 500){
+  if(cheese >= 1000){
     tntText.innerHTML = `<p class="nomb">TNT!</p>
     <p class="nomb">Click Power +50</p>`
     tntStats.innerHTML = `TNT <i class="mdi mdi-arrow-right-bold"></i> ${tnt.quantity.toString()}`
