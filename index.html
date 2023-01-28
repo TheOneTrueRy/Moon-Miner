@@ -87,8 +87,8 @@
                 <div id="roverText" class="col-6 d-flex flex-column">
                   <p class="nomb fs-1">???</p>
                 </div>
-                <div class="col-6"><button id="pickaxeButton" class="clickButton fs-4 btn" onclick="buyPickaxe()" disabled="disabled">50<i class="mdi mdi-cheese"></i></button></div>
-                <div id="pickText" class="col-6 d-flex flex-column">
+                <div class="col-6"><button id="alienButton" class="clickButton fs-4 btn" onclick="buyAlien()" disabled="disabled">25000<i class="mdi mdi-cheese"></i></button></div>
+                <div id="alienText" class="col-6 d-flex flex-column">
                   <p class="nomb fs-1">???</p>
                 </div>
               </div>
@@ -107,6 +107,7 @@
             <div class="col-6 d-flex flex-column justify-content-between pt-2 fs-3 text-center g-0">
               <p id="mouseStats" class="nomb">???: 0</p>
               <p id="roverStats" class="nomb">???: 0</p>
+              <p id="alienStats" class="nomb">???: 0</p>
               <p id="autoCheese"></p>
             </div>
           </div>
@@ -115,6 +116,7 @@
 <!-- UI End -->
     </div>
   </footer>
+  <audio id="bogos-binted" src="assets/bogos binted.wav"></audio>
   <audio id="click-sound" src="assets/click.wav"></audio>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous" defer></script>
   <script src="app.js"></script>
