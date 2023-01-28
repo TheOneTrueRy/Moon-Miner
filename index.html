@@ -40,9 +40,15 @@
 <!-- SECTION UI -->
   <footer>
     <div class="container-fluid px-5">
-      <div class="row cheese">
-        <div class="col-12 text-center text-light fs-5">
+      <div class="row">
+        <div class="col-4 d-flex align-items-end">
+          <p id="totalCheese" class="fs-2 totalCheese"></p>
+        </div>
+        <div class="col-4 text-center">
           <p id="cheese"></p>
+        </div>
+        <div class="col-4">
+
         </div>
       </div>
 <!-- SECTION Upgrade UI -->
@@ -53,15 +59,17 @@
               <!-- SECTION Click Upgrades -->
               <div class="row">
                 <div class="col-12 pt-1"><p class="nomb">CLICK UPGRADES</p></div>
-                <div class="col-6"><button id="pickaxeButton" class="clickButton fs-4" onclick="buyPickaxe()">50<i class="mdi mdi-cheese"></i></button></div>
-                <div class="col-6 d-flex flex-column">
-                  <p class="nomb">Pickaxe!</p>
-                  <p class="nomb">Click Power +1</p>
+                <div class="col-6"><button id="pickaxeButton" class="clickButton fs-4 btn" onclick="buyPickaxe()" disabled="disabled">50<i class="mdi mdi-cheese"></i></button></div>
+                <div id="pickText" class="col-6 d-flex flex-column">
+                  <p class="nomb fs-1">???</p>
                 </div>
-                <div class="col-6"><button id="drillButton" class="clickButton fs-4" onclick="buyDrill()"></button></div>
-                <div class="col-6 d-flex flex-column">
-                  <p class="nomb">Drill!</p>
-                  <p class="nomb">Click Power +10</p>
+                <div class="col-6"><button id="drillButton" class="clickButton fs-4 btn" onclick="buyDrill()" disabled="disabled"></button></div>
+                <div id="drillText" class="col-6 d-flex flex-column">
+                  <p class="nomb fs-1">???</p>
+                </div>
+                <div class="col-6"><button id="tntButton" class="clickButton fs-4 btn" onclick="buyTNT()" disabled="disabled">50<i class="mdi mdi-cheese"></i></button></div>
+                <div id="tntText" class="col-6 d-flex flex-column">
+                  <p class="nomb fs-1">???</p>
                 </div>
               </div>
               <!--Click End -->
@@ -70,15 +78,17 @@
               <!-- SECTION Auto Upgrades -->
               <div class="row">
                 <div class="col-12 pt-1"><p class="nomb">AUTOMATIC UPGRADES</p></div>
-                <div class="col-6"><button id="mouseButton" class="autoButton fs-4" onclick="buyMousetronaut()">100<i class="mdi mdi-cheese"></i></button></div>
-                <div class="col-6 d-flex flex-column">
-                  <p class="nomb">Mousetronaut!</p>
-                  <p class="nomb">5 Cheese per 2s</p>
+                <div class="col-6"><button id="mouseButton" class="autoButton fs-4 btn" onclick="buyMousetronaut()" disabled="disabled">100<i class="mdi mdi-cheese"></i></button></div>
+                <div id="mouseText" class="col-6 d-flex flex-column">
+                  <p class="nomb fs-1">???</p>
                 </div>
-                <div class="col-6"><button id="roverButton" class="autoButton fs-4" onclick="buyRover()">500<i class="mdi mdi-cheese"></i></button></div>
-                <div class="col-6 d-flex flex-column">
-                  <p class="nomb">Rover!</p>
-                  <p class="nomb">25 Cheese per 2s</p>
+                <div class="col-6"><button id="roverButton" class="autoButton fs-4 btn" onclick="buyRover()" disabled="disabled">500<i class="mdi mdi-cheese"></i></button></div>
+                <div id="roverText" class="col-6 d-flex flex-column">
+                  <p class="nomb fs-1">???</p>
+                </div>
+                <div class="col-6"><button id="pickaxeButton" class="clickButton fs-4 btn" onclick="buyPickaxe()" disabled="disabled">50<i class="mdi mdi-cheese"></i></button></div>
+                <div id="pickText" class="col-6 d-flex flex-column">
+                  <p class="nomb fs-1">???</p>
                 </div>
               </div>
               <!-- Auto End -->
@@ -88,13 +98,14 @@
         <div class="col-6 p-3">
           <div class="row upgradeCard">
             <div class="col-6 d-flex flex-column justify-content-between pt-2 fs-3 text-center g-0">
-              <p id="pickStats" class="nomb"></p>
-              <p id="drillStats" class="nomb"></p>
+              <p id="pickStats" class="nomb">???: 0</p>
+              <p id="drillStats" class="nomb">???: 0</p>
+              <p id="tntStats" class="nomb">???: 0</p>
               <p id="clickCheese"></p>
             </div>
             <div class="col-6 d-flex flex-column justify-content-between pt-2 fs-3 text-center g-0">
-              <p id="mouseStats" class="nomb"></p>
-              <p id="roverStats" class="nomb"></p>
+              <p id="mouseStats" class="nomb">???: 0</p>
+              <p id="roverStats" class="nomb">???: 0</p>
               <p id="autoCheese"></p>
             </div>
           </div>
