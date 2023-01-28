@@ -291,7 +291,7 @@ function collectAutoUpgrades(){
 }
 
 function startInterval(){
-  setInterval(collectAutoUpgrades, 2000)
+  setInterval(collectAutoUpgrades, 1000)
 }
 
 function drawCheese(){
@@ -368,7 +368,7 @@ function drawUpgrades(){
     autoTotal += auto
   })
   
-  autoElem.innerHTML = `Cheese / 2s <i class="mdi mdi-arrow-right-bold"></i> ${autoTotal.toString()}`
+  autoElem.innerHTML = `Cheese / 1s <i class="mdi mdi-arrow-right-bold"></i> ${autoTotal.toString()}`
   clickElem.innerHTML = `Cheese / Click <i class="mdi mdi-arrow-right-bold"></i> ${mineAmount.toString()}`
 }
 
