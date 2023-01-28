@@ -12,7 +12,7 @@ let clickUpgrades = [
   name: 'drill',
   price: 250,
   quantity: 0,
-  multiplier: 5
+  multiplier: 10
 }
 ]
 
@@ -52,6 +52,7 @@ function buyPickaxe(){
 }
 drawCheese()
 drawUpgrades()
+drawStats()
 }
 
 function buyDrill(){
@@ -65,6 +66,7 @@ function buyDrill(){
   }
   drawCheese()
   drawUpgrades()
+  drawStats()
 }
 
 let upgrades = 0
@@ -84,6 +86,7 @@ function buyMousetronaut(){
   }
   drawCheese()
   drawUpgrades()
+  drawStats()
 }
 
 function buyRover(){
@@ -101,6 +104,7 @@ function buyRover(){
   }
   drawCheese()
   drawUpgrades()
+  drawStats()
 }
 
 function collectAutoUpgrades(){
@@ -111,10 +115,11 @@ function collectAutoUpgrades(){
   })
   cheese += autoTotal
   drawCheese()
+  drawStats()
 }
 
 function startInterval(){
-  setInterval(collectAutoUpgrades, 3000)
+  setInterval(collectAutoUpgrades, 2000)
 }
 
 function drawCheese(){
@@ -141,7 +146,33 @@ function drawUpgrades(){
 }
 
 function drawStats(){
-
+  let mouseElem = document.getElementById('mouseStats')
+  let roverElem = document.getElementById('roverStats')
+  let pickaxeElem = document.getElementById('pickStats')
+  let drillElem = document.getElementById('drillStats')
+  let mouse = automaticUpgrades.find(object => object.name == 'mousetronaut')
+  let rover = automaticUpgrades.find(object => object.name == 'rover')
+  let pickaxe = clickUpgrades.find(object => object.name == 'pickaxe')
+  let drill = clickUpgrades.find(object => object.name == 'drill')
+  let autoElem = document.getElementById('autoCheese')
+  let clickElem = document.getElementById('clickCheese')
+  let mineAmount = 1
+  clickUpgrades.forEach(upgrade => {
+    let amount = upgrade.quantity * upgrade.multiplier
+    mineAmount += amount
+  })
+  let autoTotal = 0
+  automaticUpgrades.forEach(upgrade => {
+    let auto = upgrade.quantity * upgrade.multiplier
+    autoTotal += auto
+  })
+  
+  mouseElem.innerText = `Mousetronauts: ${mouse.quantity.toString()}`
+  roverElem.innerText = `Rovers: ${rover.quantity.toString()}`
+  pickaxeElem.innerText = `Pickaxes: ${pickaxe.quantity.toString()}`
+  drillElem.innerText = `Drills: ${drill.quantity.toString()}`
+  autoElem.innerText = `Cheese / 2s: ${autoTotal.toString()}`
+  clickElem.innerText = `Cheese / Click: ${mineAmount.toString()}`
 }
 
 drawCheese()

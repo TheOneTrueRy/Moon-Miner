@@ -17,7 +17,7 @@ h1{
 
 .upgradeCard{
   color: white;
-  text-shadow: 1px 1px 5px black;
+  text-shadow: 1px 1px 3px black;
   background-color: #fcbb15;
   height: 100%;
   width: 100%;
@@ -30,7 +30,6 @@ h1{
   background-color: #fec430;
   height: 25vh;
   border-radius: 15px;
-  margin-top: -1vh;
 }
 
 .nomb{
@@ -40,6 +39,7 @@ h1{
 .autoButton{
   height: 50px;
   width: 140px;
+  text-shadow: 1px 1px 3px black;
   text-align: center;
   border: 1px solid #da5528;
   background-color: #f67f59;
@@ -60,6 +60,7 @@ h1{
   height: 50px;
   width: 140px;
   text-align: center;
+  text-shadow: 1px 1px 3px black;
   border: 1px solid #28a9e0;
   background-color: #59c7f6;
   border-radius: 15px;
