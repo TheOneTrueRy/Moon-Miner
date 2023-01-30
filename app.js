@@ -429,11 +429,11 @@ function collectAutoUpgrades(){
     let tntElem = document.getElementById('tntButton')
     tntElem.removeAttribute(`disabled`)
   }
-  if(cheese >= alien.price && alien.quantity == 0){
+  if((cheese >= alien.price - autoTotal) && alien.quantity == 0){
     let alienElem = document.getElementById('alienButton')
     alienElem.removeAttribute(`disabled`)
   }
-  if(cheese >= mothership.price && mothership.quantity == 0){
+  if((cheese >= mothership.price - autoTotal) && mothership.quantity == 0){
     let mothershipElem = document.getElementById('mothershipButton')
     mothershipElem.removeAttribute(`disabled`)
   }
