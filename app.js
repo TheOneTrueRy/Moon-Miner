@@ -1,5 +1,7 @@
 let cheese = 0
 let totalCheese = 0
+let ID = setInterval(collectAutoUpgrades, 1000)
+clearInterval(ID)
 
 let alien = {
   name: 'alien',
@@ -325,6 +327,7 @@ function collectAutoUpgrades(){
   totalCheese += autoTotal
   drawCheese()
   drawUpgrades()
+  console.log('collected')
 }
 
 function buyAlien(){
@@ -382,15 +385,19 @@ function drawCheese(){
 
   if(totalCheese >= 1000){
     document.getElementById('achieve1').removeAttribute('hidden')
+    window.alert(`1,000 Total Cheese Mined!\nAchievement Unlocked: "I've seen feta."`)
   }
   if(totalCheese >= 7500){
     document.getElementById('achieve2').removeAttribute('hidden')
-  }
-  if(totalCheese >= 25000){
-    document.getElementById('achieve3').removeAttribute('hidden')
+    window.alert(`7,500 Total Cheese Mined!\nAchievement Unlocked: "I brie-lieve in you...`)
   }
   if(totalCheese >= 50000){
+    document.getElementById('achieve3').removeAttribute('hidden')
+    window.alert(`50,000 Total Cheese Mined!\nAchievement Unlocked: "Wow! Gouda Job!"`)
+  }
+  if(totalCheese >= 100000){
     document.getElementById('achieve4').removeAttribute('hidden')
+    window.alert(`100,000 Total Cheese Mined?!\nThat get's you the "I'm Blue (Da Ba Cheese Da Ba Mine)" Achievement! (Thank my girlfriend for that one)`)
   }
 }
 
