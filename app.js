@@ -1,5 +1,27 @@
 let cheese = 0
 let totalCheese = 0
+let mouseElem = document.getElementById('mouseButton')
+let roverElem = document.getElementById('roverButton')
+let pickaxeElem = document.getElementById('pickaxeButton')
+let drillElem = document.getElementById('drillButton')
+let alienElem = document.getElementById('alienButton')
+let mothershipElem = document.getElementById('mothershipButton')
+let tntElem = document.getElementById('tntButton')
+let pickText = document.getElementById('pickText')
+let roverText = document.getElementById('roverText')
+let drillText = document.getElementById('drillText')
+let mouseText = document.getElementById('mouseText')
+let tntText = document.getElementById('tntText')
+let alienText = document.getElementById('alienText')
+let mothershipText = document.getElementById('mothershipText')
+let mouseStats = document.getElementById('mouseStats')
+let roverStats = document.getElementById('roverStats')
+let pickaxeStats = document.getElementById('pickStats')
+let drillStats = document.getElementById('drillStats')
+let tntStats = document.getElementById('tntStats')
+let alienStats = document.getElementById('alienStats')
+let autoElem = document.getElementById('autoCheese')
+let clickElem = document.getElementById('clickCheese')
 
 let IDs = []
 
@@ -58,39 +80,38 @@ let pickaxe = clickUpgrades.find(object => object.name == 'pickaxe')
 let drill = clickUpgrades.find(object => object.name == 'drill')
 let tnt = clickUpgrades.find(object => object.name == 'tnt')
 
+let mineAmount = 1
+clickUpgrades.forEach(upgrade => {
+  let amount = upgrade.quantity * upgrade.multiplier
+  mineAmount += amount
+})
+
+let autoTotal = 0
+automaticUpgrades.forEach(upgrade => {
+  let auto = upgrade.quantity * upgrade.multiplier
+  autoTotal += auto
+})
 
 function mine(){
-  let mineAmount = 1
-  clickUpgrades.forEach(upgrade => {
-    let amount = upgrade.quantity * upgrade.multiplier
-    mineAmount += amount
-  })
   if(cheese >= pickaxe.price - mineAmount){
-    let pickaxeElem = document.getElementById('pickaxeButton')
     pickaxeElem.removeAttribute(`disabled`)
   } 
   if(cheese >= drill.price - mineAmount){
-    let drillElem = document.getElementById('drillButton')
     drillElem.removeAttribute(`disabled`)
   } 
   if(cheese >= mouse.price - mineAmount){
-    let mouseElem = document.getElementById('mouseButton')
     mouseElem.removeAttribute(`disabled`)
   } 
   if(cheese >= rover.price - mineAmount){
-    let roverElem = document.getElementById('roverButton')
     roverElem.removeAttribute(`disabled`)
   }
   if(cheese >= tnt.price - mineAmount){
-    let tntElem = document.getElementById('tntButton')
     tntElem.removeAttribute(`disabled`)
   }  
   if((cheese >= alien.price - mineAmount) && alien.quantity == 0){
-    let alienElem = document.getElementById('alienButton')
     alienElem.removeAttribute(`disabled`)
   }
   if((cheese >= mothership.price - mineAmount) && mothership.quantity == 0){
-    let mothershipElem = document.getElementById('mothershipButton')
     mothershipElem.removeAttribute(`disabled`)
   }
   cheese += mineAmount
@@ -107,34 +128,6 @@ function buyPickaxe(){
     pickaxe.quantity += 1
     pickaxe.price += 50
   }
-if(cheese < mouse.price){
-  let mouseElem = document.getElementById('mouseButton')
-  mouseElem.setAttribute(`disabled`, '')
-}
-if(cheese < rover.price){
-  let roverElem = document.getElementById('roverButton')
-  roverElem.setAttribute(`disabled`, '')
-}
-if(cheese < drill.price){
-  let drillElem = document.getElementById('drillButton')
-  drillElem.setAttribute(`disabled`, '')
-}
-if(cheese < pickaxe.price){
-  let pickaxeElem = document.getElementById('pickaxeButton')
-  pickaxeElem.setAttribute(`disabled`, '')
-}
-if(cheese < tnt.price){
-  let tntElem = document.getElementById('tntButton')
-  tntElem.setAttribute(`disabled`, '')
-}
-if(cheese < alien.price){
-  let alienElem = document.getElementById('alienButton')
-  alienElem.setAttribute(`disabled`, '')
-}
-if(mothership.quantity == 1 || cheese < mothership.price){
-  let mothershipElem = document.getElementById('mothershipButton')
-  mothershipElem.setAttribute(`disabled`, '')
-}
 drawCheese()
 drawUpgrades()
 drawPick()
@@ -147,34 +140,6 @@ function buyTNT(){
     tnt.quantity += 1
     tnt.price += 1000
   }
-if(cheese < mouse.price){
-  let mouseElem = document.getElementById('mouseButton')
-  mouseElem.setAttribute(`disabled`, '')
-}
-if(cheese < rover.price){
-  let roverElem = document.getElementById('roverButton')
-  roverElem.setAttribute(`disabled`, '')
-}
-if(cheese < drill.price){
-  let drillElem = document.getElementById('drillButton')
-  drillElem.setAttribute(`disabled`, '')
-}
-if(cheese < pickaxe.price){
-  let pickaxeElem = document.getElementById('pickaxeButton')
-  pickaxeElem.setAttribute(`disabled`, '')
-}
-if(cheese < tnt.price){
-  let tntElem = document.getElementById('tntButton')
-  tntElem.setAttribute(`disabled`, '')
-}
-if(cheese < alien.price){
-  let alienElem = document.getElementById('alienButton')
-  alienElem.setAttribute(`disabled`, '')
-}
-if(mothership.quantity == 1 || cheese < mothership.price){
-  let mothershipElem = document.getElementById('mothershipButton')
-  mothershipElem.setAttribute(`disabled`, '')
-}
 drawCheese()
 drawUpgrades()
 drawTNT()
@@ -186,34 +151,6 @@ function buyDrill(){
     cheese -= drill.price
     drill.quantity += 1
     drill.price += 250
-  }
-  if(cheese < mouse.price){
-    let mouseElem = document.getElementById('mouseButton')
-    mouseElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < rover.price){
-    let roverElem = document.getElementById('roverButton')
-    roverElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < drill.price){
-    let drillElem = document.getElementById('drillButton')
-    drillElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < pickaxe.price){
-    let pickaxeElem = document.getElementById('pickaxeButton')
-    pickaxeElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < tnt.price){
-    let tntElem = document.getElementById('tntButton')
-    tntElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < alien.price){
-    let alienElem = document.getElementById('alienButton')
-    alienElem.setAttribute(`disabled`, '')
-  }
-  if(mothership.quantity == 1 || cheese < mothership.price){
-    let mothershipElem = document.getElementById('mothershipButton')
-    mothershipElem.setAttribute(`disabled`, '')
   }
   drawCheese()
   drawUpgrades()
@@ -233,34 +170,6 @@ function buyMousetronaut(){
   if(upgrades == 1){
     startInterval()
   }
-  if(cheese < mouse.price){
-    let mouseElem = document.getElementById('mouseButton')
-    mouseElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < rover.price){
-    let roverElem = document.getElementById('roverButton')
-    roverElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < drill.price){
-    let drillElem = document.getElementById('drillButton')
-    drillElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < pickaxe.price){
-    let pickaxeElem = document.getElementById('pickaxeButton')
-    pickaxeElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < tnt.price){
-    let tntElem = document.getElementById('tntButton')
-    tntElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < alien.price){
-    let alienElem = document.getElementById('alienButton')
-    alienElem.setAttribute(`disabled`, '')
-  }
-  if(mothership.quantity == 1 || cheese < mothership.price){
-    let mothershipElem = document.getElementById('mothershipButton')
-    mothershipElem.setAttribute(`disabled`, '')
-  }
   drawCheese()
   drawUpgrades()
   drawMouse()
@@ -277,34 +186,6 @@ function buyRover(){
   if(upgrades == 1){
     startInterval()
   }
-  if(cheese < mouse.price){
-    let mouseElem = document.getElementById('mouseButton')
-    mouseElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < rover.price){
-    let roverElem = document.getElementById('roverButton')
-    roverElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < drill.price){
-    let drillElem = document.getElementById('drillButton')
-    drillElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < pickaxe.price){
-    let pickaxeElem = document.getElementById('pickaxeButton')
-    pickaxeElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < tnt.price){
-    let tntElem = document.getElementById('tntButton')
-    tntElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < alien.price){
-    let alienElem = document.getElementById('alienButton')
-    alienElem.setAttribute(`disabled`, '')
-  }
-  if(mothership.quantity == 1 || cheese < mothership.price){
-    let mothershipElem = document.getElementById('mothershipButton')
-    mothershipElem.setAttribute(`disabled`, '')
-  }
   drawCheese()
   drawUpgrades()
   drawRover()
@@ -316,31 +197,24 @@ function buyAlien(){
     alien.quantity++
   }
   if(cheese < mouse.price){
-    let mouseElem = document.getElementById('mouseButton')
     mouseElem.setAttribute(`disabled`, '')
   }
   if(cheese < rover.price){
-    let roverElem = document.getElementById('roverButton')
     roverElem.setAttribute(`disabled`, '')
   }
   if(cheese < drill.price){
-    let drillElem = document.getElementById('drillButton')
     drillElem.setAttribute(`disabled`, '')
   }
   if(cheese < pickaxe.price){
-    let pickaxeElem = document.getElementById('pickaxeButton')
     pickaxeElem.setAttribute(`disabled`, '')
   }
   if(cheese < tnt.price){
-    let tntElem = document.getElementById('tntButton')
     tntElem.setAttribute(`disabled`, '')
   }
   if(alien.quantity == 1){
-    let alienElem = document.getElementById('alienButton')
     alienElem.setAttribute(`disabled`, '')
   }
   if(mothership.quantity == 1 || cheese < mothership.price){
-    let mothershipElem = document.getElementById('mothershipButton')
     mothershipElem.setAttribute(`disabled`, '')
   }
   document.getElementById('alien').removeAttribute('hidden')
@@ -357,34 +231,6 @@ function buyMothership(){
     clearInterval(IDs[0])
     setInterval(collectAutoUpgrades, 500)
   }
-  if(cheese < mouse.price){
-    let mouseElem = document.getElementById('mouseButton')
-    mouseElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < rover.price){
-    let roverElem = document.getElementById('roverButton')
-    roverElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < drill.price){
-    let drillElem = document.getElementById('drillButton')
-    drillElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < pickaxe.price){
-    let pickaxeElem = document.getElementById('pickaxeButton')
-    pickaxeElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < tnt.price){
-    let tntElem = document.getElementById('tntButton')
-    tntElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < alien.price){
-    let alienElem = document.getElementById('alienButton')
-    alienElem.setAttribute(`disabled`, '')
-  }
-  if(mothership.quantity == 1){
-    let mothershipElem = document.getElementById('mothershipButton')
-    mothershipElem.setAttribute(`disabled`, '')
-  }
   document.getElementById('mothership').removeAttribute('hidden')
   playBogos()
   drawCheese()
@@ -392,37 +238,25 @@ function buyMothership(){
 }
 
 function collectAutoUpgrades(){
-  let autoTotal = 0
-  automaticUpgrades.forEach(upgrade => {
-    let auto = upgrade.quantity * upgrade.multiplier
-    autoTotal += auto
-  })
   if(cheese >= pickaxe.price - autoTotal){
-    let pickaxeElem = document.getElementById('pickaxeButton')
     pickaxeElem.removeAttribute(`disabled`)
   } 
   if(cheese >= drill.price - autoTotal){
-    let drillElem = document.getElementById('drillButton')
     drillElem.removeAttribute(`disabled`)
   } 
   if(cheese >= mouse.price - autoTotal){
-    let mouseElem = document.getElementById('mouseButton')
     mouseElem.removeAttribute(`disabled`)
   } 
   if(cheese >= rover.price - autoTotal){
-    let roverElem = document.getElementById('roverButton')
     roverElem.removeAttribute(`disabled`)
   }
   if(cheese >= tnt.price - autoTotal){
-    let tntElem = document.getElementById('tntButton')
     tntElem.removeAttribute(`disabled`)
   }
   if((cheese >= alien.price - autoTotal) && alien.quantity == 0){
-    let alienElem = document.getElementById('alienButton')
     alienElem.removeAttribute(`disabled`)
   }
   if((cheese >= mothership.price - autoTotal) && mothership.quantity == 0){
-    let mothershipElem = document.getElementById('mothershipButton')
     mothershipElem.removeAttribute(`disabled`)
   }
   if(alien.quantity == 1){
@@ -468,30 +302,30 @@ function drawCheese(){
     document.getElementById('achieve4').removeAttribute('hidden')
     window.alert(`100,000 Total Cheese Mined?!\nThat get's you the "I'm Blue (Da Ba Cheese Da Ba Mine)" Achievement! (Thank my girlfriend for that one)`)
   }
+  if(cheese < mouse.price){
+    mouseElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < rover.price){
+    roverElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < drill.price){
+    drillElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < pickaxe.price){
+    pickaxeElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < tnt.price){
+    tntElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < alien.price){
+    alienElem.setAttribute(`disabled`, '')
+  }
+  if(mothership.quantity == 1 || cheese < mothership.price){
+    mothershipElem.setAttribute(`disabled`, '')
+  }
 }
 
 function drawUpgrades(){
-  let mouseElem = document.getElementById('mouseButton')
-  let roverElem = document.getElementById('roverButton')
-  let pickaxeElem = document.getElementById('pickaxeButton')
-  let drillElem = document.getElementById('drillButton')
-  let tntElem = document.getElementById('tntButton')
-  let pickText = document.getElementById('pickText')
-  let roverText = document.getElementById('roverText')
-  let drillText = document.getElementById('drillText')
-  let mouseText = document.getElementById('mouseText')
-  let tntText = document.getElementById('tntText')
-  let alienText = document.getElementById('alienText')
-  let mothershipText = document.getElementById('mothershipText')
-  let mouseStats = document.getElementById('mouseStats')
-  let roverStats = document.getElementById('roverStats')
-  let pickaxeStats = document.getElementById('pickStats')
-  let drillStats = document.getElementById('drillStats')
-  let tntStats = document.getElementById('tntStats')
-  let alienStats = document.getElementById('alienStats')
-  let autoElem = document.getElementById('autoCheese')
-  let clickElem = document.getElementById('clickCheese')
-
   if(cheese >= 50){
     pickText.innerHTML = `<p class="nomb">Pickaxe!</p>
     <p class="nomb">Click Power +1</p>`
@@ -534,16 +368,6 @@ function drawUpgrades(){
   drillElem.innerHTML = `${drill.price}<i class="mdi mdi-cheese"></i>`
   tntElem.innerHTML = `${tnt.price}<i class="mdi mdi-cheese"></i>`
   
-  let mineAmount = 1
-  clickUpgrades.forEach(upgrade => {
-    let amount = upgrade.quantity * upgrade.multiplier
-    mineAmount += amount
-  })
-  let autoTotal = 0
-  automaticUpgrades.forEach(upgrade => {
-    let auto = upgrade.quantity * upgrade.multiplier
-    autoTotal += auto
-  })
   if(alien.quantity == 1){
     autoTotal *= 2
   }
