@@ -1,6 +1,6 @@
 /* SECTION Elements */
 
-.upgradeCard::-webkit-scrollbar{
+.upgradeCardLeft::-webkit-scrollbar{
   width: 0px;
 }
 
@@ -8,6 +8,7 @@ body{
   background-image: url(https://th.bing.com/th/id/R.cf2f49a845212dd14fc588ea87ae1786?rik=7S8kpsDq%2bdl1hA&pid=ImgRaw&r=0);
   background-size: cover;
   font-family: 'Righteous', cursive;
+  overscroll-behavior: none;
 }
 
 h1{
@@ -19,7 +20,7 @@ h1{
 
 /* SECTION Classes */
 
-.upgradeCard{
+.upgradeCardLeft{
   color: white;
   text-shadow: 1px 1px 3px black;
   background-color: #fcbb15;
@@ -29,6 +30,17 @@ h1{
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.395);
   overflow-y: scroll;
+}
+
+.upgradeCardRight{
+  color: white;
+  text-shadow: 1px 1px 3px black;
+  background-color: #fcbb15;
+  height: 22.5vh;
+  width: 100%;
+  margin: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.395);
 }
 
 .upgradeCardBack{
