@@ -111,6 +111,17 @@ h1{
   height: 100%;
 }
 
+.badge{
+  height: 8vh;
+  width: auto;
+  transition: 0.3s;
+  user-select: none;
+}
+
+.badge:hover{
+  transform: scale(1.1);
+}
+
 /* SECTION IDs */
 
 #moon{

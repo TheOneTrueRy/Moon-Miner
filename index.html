@@ -1,130 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.1.96/css/materialdesignicons.min.css" integrity="sha512-NaaXI5f4rdmlThv3ZAVS44U9yNWJaUYWzPhvlg5SC7nMRvQYV9suauRK3gVbxh7qjE33ApTPD+hkOW78VSHyeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="assets/the-moon.png">
-  <link rel="stylesheet" href="style.css">
-  <title id="title"></title>
-</head>
-
-<body>
-<!-- SECTION Header/Title -->
-  <header class="d-flex">
-    <div class="container-fluid">
-      <div class="row title">
-        <div class="col-12 d-flex justify-content-center align-items-end mt-4">
-          <h1>MOON MINER</h1>
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.1.96/css/materialdesignicons.min.css" integrity="sha512-NaaXI5f4rdmlThv3ZAVS44U9yNWJaUYWzPhvlg5SC7nMRvQYV9suauRK3gVbxh7qjE33ApTPD+hkOW78VSHyeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/the-moon.png">
+    <link rel="stylesheet" href="style.css">
+    <title id="title"></title>
+  </head>
+  
+  <body>
+    <!-- SECTION Header/Title -->
+    <header class="d-flex">
+      <div class="container-fluid">
+        <div class="row title">
+          <div class="col-12 d-flex justify-content-center align-items-end mt-4">
+            <h1>MOON MINER</h1>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
-
-<!-- SECTION Image/Clickable -->
-  <main>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-4 d-flex">
-          <marquee behavior="alternate" direction="up" scrollamount="30">
-            <marquee behavior="alternate" direction="right" scrollamount="30">
-              <h1 id="alien" hidden>👽</h1>
+    </header>
+    
+    <!-- SECTION Image/Clickable -->
+    <main>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-4 d-flex">
+            <marquee behavior="alternate" direction="up" scrollamount="30">
+              <marquee behavior="alternate" direction="right" scrollamount="30">
+                <h1 id="alien" hidden>👽</h1>
+              </marquee>
             </marquee>
-          </marquee>
-        </div>
-        <div class="col-4 d-flex justify-content-center align-items-end mt-1">
-          <img id="moon" src="assets/the-moon.png" alt="" onclick="mine()" class="img-fluid">
-        </div>
-      </div>
-    </div>
-  </main>
-
-<!-- SECTION UI -->
-  <footer>
-    <div class="container-fluid px-5">
-      <div class="row">
-        <div class="col-4 d-flex align-items-end">
-          <p id="totalCheese" class="fs-2 totalCheese"></p>
-        </div>
-        <div class="col-4 text-center">
-          <p id="cheese"></p>
-        </div>
-        <div class="col-4">
-        </div>
-      </div>
-<!-- SECTION Upgrade UI -->
-      <div class="row upgradeCardBack">
-        <div class="col-6 p-3">
-          <div class="row upgradeCard">
-            <div class="col-6">
-              <!-- SECTION Click Upgrades -->
-              <div class="row">
-                <div class="col-12 pt-1"><p class="nomb">CLICK UPGRADES</p></div>
-                <div class="col-6"><button id="pickaxeButton" class="clickButton fs-4 btn" onclick="buyPickaxe()" disabled="disabled">50<i class="mdi mdi-cheese"></i></button></div>
-                <div id="pickText" class="col-6 d-flex flex-column">
-                  <p class="nomb fs-1">???</p>
-                </div>
-                <div class="col-6"><button id="drillButton" class="clickButton fs-4 btn" onclick="buyDrill()" disabled="disabled"></button></div>
-                <div id="drillText" class="col-6 d-flex flex-column">
-                  <p class="nomb fs-1">???</p>
-                </div>
-                <div class="col-6"><button id="tntButton" class="clickButton fs-4 btn" onclick="buyTNT()" disabled="disabled">50<i class="mdi mdi-cheese"></i></button></div>
-                <div id="tntText" class="col-6 d-flex flex-column">
-                  <p class="nomb fs-1">???</p>
-                </div>
-              </div>
-              <!--Click End -->
-            </div>
-            <div class="col-6">
-              <!-- SECTION Auto Upgrades -->
-              <div class="row">
-                <div class="col-12 pt-1"><p class="nomb">AUTOMATIC UPGRADES</p></div>
-                <div class="col-6"><button id="mouseButton" class="autoButton fs-4 btn" onclick="buyMousetronaut()" disabled="disabled">100<i class="mdi mdi-cheese"></i></button></div>
-                <div id="mouseText" class="col-6 d-flex flex-column">
-                  <p class="nomb fs-1">???</p>
-                </div>
-                <div class="col-6"><button id="roverButton" class="autoButton fs-4 btn" onclick="buyRover()" disabled="disabled">500<i class="mdi mdi-cheese"></i></button></div>
-                <div id="roverText" class="col-6 d-flex flex-column">
-                  <p class="nomb fs-1">???</p>
-                </div>
-                <div class="col-6"><button id="alienButton" class="alienButton fs-4 btn" onclick="buyAlien()" disabled="disabled">25000<i class="mdi mdi-cheese"></i></button></div>
-                <div id="alienText" class="col-6 d-flex flex-column">
-                  <p class="nomb fs-1">???</p>
-                </div>
-              </div>
-              <!-- Auto End -->
-            </div>
           </div>
-        </div>
-        <div class="col-6 p-3">
-          <div class="row upgradeCard">
-            <div class="col-6 d-flex flex-column justify-content-between pt-2 fs-3 text-center g-0">
-              <p id="pickStats" class="nomb">???: 0</p>
-              <p id="drillStats" class="nomb">???: 0</p>
-              <p id="tntStats" class="nomb">???: 0</p>
-              <p id="clickCheese"></p>
-            </div>
-            <div class="col-6 d-flex flex-column justify-content-between pt-2 fs-3 text-center g-0">
-              <p id="mouseStats" class="nomb">???: 0</p>
-              <p id="roverStats" class="nomb">???: 0</p>
-              <p id="alienStats" class="nomb">???</p>
-              <p id="autoCheese"></p>
-            </div>
+          <div class="col-4 d-flex justify-content-center align-items-end mt-1">
+            <img id="moon" src="assets/the-moon.png" alt="" onclick="mine()" class="img-fluid">
           </div>
         </div>
       </div>
-<!-- UI End -->
+    </main>
+    
+    <!-- SECTION UI -->
+    <footer>
+      <div class="container-fluid px-5">
+        <div class="row">
+          <div class="col-4 d-flex align-items-end">
+            <p id="totalCheese" class="fs-2 totalCheese"></p>
+          </div>
+          <div class="col-4 text-center">
+            <p id="cheese"></p>
+          </div>
+          <div class="col-4">
+          </div>
+        </div>
+        <!-- SECTION Upgrade UI -->
+        <div class="row upgradeCardBack">
+          <div class="col-6 p-3">
+            <div class="row upgradeCard">
+              <div class="col-6">
+                <!-- SECTION Click Upgrades -->
+                <div class="row">
+                  <div class="col-12 pt-1"><p class="nomb">CLICK UPGRADES</p></div>
+                  <div class="col-6"><button id="pickaxeButton" class="clickButton fs-4 btn" onclick="buyPickaxe()" disabled="disabled">50<i class="mdi mdi-cheese"></i></button></div>
+                  <div id="pickText" class="col-6 d-flex flex-column">
+                    <p class="nomb fs-1">???</p>
+                  </div>
+                  <div class="col-6"><button id="drillButton" class="clickButton fs-4 btn" onclick="buyDrill()" disabled="disabled"></button></div>
+                  <div id="drillText" class="col-6 d-flex flex-column">
+                    <p class="nomb fs-1">???</p>
+                  </div>
+                  <div class="col-6"><button id="tntButton" class="clickButton fs-4 btn" onclick="buyTNT()" disabled="disabled">50<i class="mdi mdi-cheese"></i></button></div>
+                  <div id="tntText" class="col-6 d-flex flex-column">
+                    <p class="nomb fs-1">???</p>
+                  </div>
+                </div>
+                <!--Click End -->
+              </div>
+              <div class="col-6">
+                <!-- SECTION Auto Upgrades -->
+                <div class="row">
+                  <div class="col-12 pt-1"><p class="nomb">AUTOMATIC UPGRADES</p></div>
+                  <div class="col-6"><button id="mouseButton" class="autoButton fs-4 btn" onclick="buyMousetronaut()" disabled="disabled">100<i class="mdi mdi-cheese"></i></button></div>
+                  <div id="mouseText" class="col-6 d-flex flex-column">
+                    <p class="nomb fs-1">???</p>
+                  </div>
+                  <div class="col-6"><button id="roverButton" class="autoButton fs-4 btn" onclick="buyRover()" disabled="disabled">500<i class="mdi mdi-cheese"></i></button></div>
+                  <div id="roverText" class="col-6 d-flex flex-column">
+                    <p class="nomb fs-1">???</p>
+                  </div>
+                  <div class="col-6"><button id="alienButton" class="alienButton fs-4 btn" onclick="buyAlien()" disabled="disabled">25000<i class="mdi mdi-cheese"></i></button></div>
+                  <div id="alienText" class="col-6 d-flex flex-column">
+                    <p class="nomb fs-1">???</p>
+                  </div>
+                </div>
+                <!-- Auto End -->
+              </div>
+            </div>
+          </div>
+          <div class="col-6 p-3">
+            <div class="row upgradeCard">
+              <div class="col-6 d-flex flex-column justify-content-between pt-2 fs-3 text-center g-0">
+                <p id="pickStats" class="nomb">???: 0</p>
+                <p id="drillStats" class="nomb">???: 0</p>
+                <p id="tntStats" class="nomb">???: 0</p>
+                <p id="clickCheese"></p>
+              </div>
+              <div class="col-6 d-flex flex-column justify-content-between pt-2 fs-3 text-center g-0">
+                <p id="mouseStats" class="nomb">???: 0</p>
+                <p id="roverStats" class="nomb">???: 0</p>
+                <p id="alienStats" class="nomb">???</p>
+                <p id="autoCheese"></p>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- UI End -->
     </div>
   </footer>
-<audio src="assets/space-ambience.wav" loop autoplay></audio>
+  <audio src="assets/space-ambience.wav" loop autoplay></audio>
   <audio id="bogos-binted" src="assets/bogos-binted.wav"></audio>
   <audio id="click-sound" src="assets/click.wav"></audio>
+  <script src="sweetalert2.all.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous" defer></script>
   <script src="app.js"></script>
 </body>
