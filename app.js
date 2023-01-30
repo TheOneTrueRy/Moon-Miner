@@ -1,7 +1,7 @@
 let cheese = 0
 let totalCheese = 0
-let ID = setInterval(collectAutoUpgrades, 1000)
-clearInterval(ID)
+
+let IDs = []
 
 let alien = {
   name: 'alien',
@@ -106,9 +106,7 @@ function buyPickaxe(){
     cheese -= pickaxe.price
     pickaxe.quantity += 1
     pickaxe.price += 50
-  }else{
-    window.alert('You gotta up that cheddar, Big Cheese!')
-}
+  }
 if(cheese < mouse.price){
   let mouseElem = document.getElementById('mouseButton')
   mouseElem.setAttribute(`disabled`, '')
@@ -148,9 +146,7 @@ function buyTNT(){
     cheese -= tnt.price
     tnt.quantity += 1
     tnt.price += 1000
-  }else{
-    window.alert('You gotta up that cheddar, Big Cheese!')
-}
+  }
 if(cheese < mouse.price){
   let mouseElem = document.getElementById('mouseButton')
   mouseElem.setAttribute(`disabled`, '')
@@ -190,8 +186,6 @@ function buyDrill(){
     cheese -= drill.price
     drill.quantity += 1
     drill.price += 250
-  }else{
-    window.alert('You gotta up that cheddar, Big Cheese!')
   }
   if(cheese < mouse.price){
     let mouseElem = document.getElementById('mouseButton')
@@ -235,8 +229,6 @@ function buyMousetronaut(){
     mousetronaut.quantity += 1
     upgrades += 1
     mouse.price += 100
-  }else{
-    window.alert('You gotta up that cheddar, Big Cheese!')
   }
   if(upgrades == 1){
     startInterval()
@@ -281,8 +273,6 @@ function buyRover(){
     rover.quantity += 1
     upgrades += 1
     rover.price += 500
-  }else{
-    window.alert('You gotta up that cheddar, Big Cheese!')
   }
   if(upgrades == 1){
     startInterval()
@@ -324,8 +314,6 @@ function buyAlien(){
   if(cheese >= alien.price){
     cheese -= alien.price
     alien.quantity++
-  }else{
-    window.alert('You gotta up that cheddar, Big Cheese!')
   }
   if(cheese < mouse.price){
     let mouseElem = document.getElementById('mouseButton')
@@ -366,7 +354,7 @@ function buyMothership(){
   if(cheese >= mothership.price){
     cheese -= mothership.price
     mothership.quantity++
-    clearInterval(ID)
+    clearInterval(IDs[0])
     setInterval(collectAutoUpgrades, 500)
   }
   if(cheese < mouse.price){
@@ -450,7 +438,8 @@ function collectAutoUpgrades(){
 
 
 function startInterval(){
-  setInterval(collectAutoUpgrades, 1000)
+  let intervalID = setInterval(collectAutoUpgrades, 1000)
+  IDs.push(intervalID)
 }
 
 function drawCheese(){
