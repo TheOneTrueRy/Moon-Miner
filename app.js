@@ -9,6 +9,12 @@ let alien = {
   quantity: 0,
 }
 
+let mothership = {
+  name: 'mothership',
+  price: 100000,
+  quantity: 0
+}
+
 
 let clickUpgrades = [
   {
@@ -83,6 +89,10 @@ function mine(){
     let alienElem = document.getElementById('alienButton')
     alienElem.removeAttribute(`disabled`)
   }
+  if((cheese >= mothership.price - mineAmount) && mothership.quantity == 0){
+    let mothershipElem = document.getElementById('mothershipButton')
+    mothershipElem.removeAttribute(`disabled`)
+  }
   cheese += mineAmount
   totalCheese += mineAmount
   drawUpgrades()
@@ -123,6 +133,10 @@ if(cheese < alien.price){
   let alienElem = document.getElementById('alienButton')
   alienElem.setAttribute(`disabled`, '')
 }
+if(mothership.quantity == 1 || cheese < mothership.price){
+  let mothershipElem = document.getElementById('mothershipButton')
+  mothershipElem.setAttribute(`disabled`, '')
+}
 drawCheese()
 drawUpgrades()
 drawPick()
@@ -161,6 +175,10 @@ if(cheese < alien.price){
   let alienElem = document.getElementById('alienButton')
   alienElem.setAttribute(`disabled`, '')
 }
+if(mothership.quantity == 1 || cheese < mothership.price){
+  let mothershipElem = document.getElementById('mothershipButton')
+  mothershipElem.setAttribute(`disabled`, '')
+}
 drawCheese()
 drawUpgrades()
 drawTNT()
@@ -198,6 +216,10 @@ function buyDrill(){
   if(cheese < alien.price){
     let alienElem = document.getElementById('alienButton')
     alienElem.setAttribute(`disabled`, '')
+  }
+  if(mothership.quantity == 1 || cheese < mothership.price){
+    let mothershipElem = document.getElementById('mothershipButton')
+    mothershipElem.setAttribute(`disabled`, '')
   }
   drawCheese()
   drawUpgrades()
@@ -243,6 +265,10 @@ function buyMousetronaut(){
     let alienElem = document.getElementById('alienButton')
     alienElem.setAttribute(`disabled`, '')
   }
+  if(mothership.quantity == 1 || cheese < mothership.price){
+    let mothershipElem = document.getElementById('mothershipButton')
+    mothershipElem.setAttribute(`disabled`, '')
+  }
   drawCheese()
   drawUpgrades()
   drawMouse()
@@ -285,9 +311,96 @@ function buyRover(){
     let alienElem = document.getElementById('alienButton')
     alienElem.setAttribute(`disabled`, '')
   }
+  if(mothership.quantity == 1 || cheese < mothership.price){
+    let mothershipElem = document.getElementById('mothershipButton')
+    mothershipElem.setAttribute(`disabled`, '')
+  }
   drawCheese()
   drawUpgrades()
   drawRover()
+}
+
+function buyAlien(){
+  if(cheese >= alien.price){
+    cheese -= alien.price
+    alien.quantity++
+  }else{
+    window.alert('You gotta up that cheddar, Big Cheese!')
+  }
+  if(cheese < mouse.price){
+    let mouseElem = document.getElementById('mouseButton')
+    mouseElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < rover.price){
+    let roverElem = document.getElementById('roverButton')
+    roverElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < drill.price){
+    let drillElem = document.getElementById('drillButton')
+    drillElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < pickaxe.price){
+    let pickaxeElem = document.getElementById('pickaxeButton')
+    pickaxeElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < tnt.price){
+    let tntElem = document.getElementById('tntButton')
+    tntElem.setAttribute(`disabled`, '')
+  }
+  if(alien.quantity == 1){
+    let alienElem = document.getElementById('alienButton')
+    alienElem.setAttribute(`disabled`, '')
+  }
+  if(mothership.quantity == 1 || cheese < mothership.price){
+    let mothershipElem = document.getElementById('mothershipButton')
+    mothershipElem.setAttribute(`disabled`, '')
+  }
+  document.getElementById('alien').removeAttribute('hidden')
+  playBogos()
+  drawCheese()
+  drawUpgrades()
+  drawAlien()
+}
+
+function buyMothership(){
+  if(cheese >= mothership.price){
+    cheese -= mothership.price
+    mothership.quantity++
+    clearInterval(ID)
+    setInterval(collectAutoUpgrades, 500)
+  }
+  if(cheese < mouse.price){
+    let mouseElem = document.getElementById('mouseButton')
+    mouseElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < rover.price){
+    let roverElem = document.getElementById('roverButton')
+    roverElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < drill.price){
+    let drillElem = document.getElementById('drillButton')
+    drillElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < pickaxe.price){
+    let pickaxeElem = document.getElementById('pickaxeButton')
+    pickaxeElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < tnt.price){
+    let tntElem = document.getElementById('tntButton')
+    tntElem.setAttribute(`disabled`, '')
+  }
+  if(cheese < alien.price){
+    let alienElem = document.getElementById('alienButton')
+    alienElem.setAttribute(`disabled`, '')
+  }
+  if(mothership.quantity == 1){
+    let mothershipElem = document.getElementById('mothershipButton')
+    mothershipElem.setAttribute(`disabled`, '')
+  }
+  document.getElementById('mothership').removeAttribute('hidden')
+  playBogos()
+  drawCheese()
+  drawUpgrades()
 }
 
 function collectAutoUpgrades(){
@@ -320,6 +433,10 @@ function collectAutoUpgrades(){
     let alienElem = document.getElementById('alienButton')
     alienElem.removeAttribute(`disabled`)
   }
+  if(cheese >= mothership.price && mothership.quantity == 0){
+    let mothershipElem = document.getElementById('mothershipButton')
+    mothershipElem.removeAttribute(`disabled`)
+  }
   if(alien.quantity == 1){
     autoTotal *= 2
   }
@@ -330,43 +447,6 @@ function collectAutoUpgrades(){
   console.log('collected')
 }
 
-function buyAlien(){
-  if(cheese >= alien.price){
-    cheese -= alien.price
-    alien.quantity += 1
-  }else{
-    window.alert('You gotta up that cheddar, Big Cheese!')
-  }
-  if(cheese < mouse.price){
-    let mouseElem = document.getElementById('mouseButton')
-    mouseElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < rover.price){
-    let roverElem = document.getElementById('roverButton')
-    roverElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < drill.price){
-    let drillElem = document.getElementById('drillButton')
-    drillElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < pickaxe.price){
-    let pickaxeElem = document.getElementById('pickaxeButton')
-    pickaxeElem.setAttribute(`disabled`, '')
-  }
-  if(cheese < tnt.price){
-    let tntElem = document.getElementById('tntButton')
-    tntElem.setAttribute(`disabled`, '')
-  }
-  if(alien.quantity == 1){
-    let alienElem = document.getElementById('alienButton')
-    alienElem.setAttribute(`disabled`, '')
-  }
-  document.getElementById('alien').removeAttribute('hidden')
-  playBogos()
-  drawCheese()
-  drawUpgrades()
-  drawAlien()
-}
 
 
 function startInterval(){
@@ -383,19 +463,19 @@ function drawCheese(){
   `
   title.innerText = `Moon Miner - ${cheese.toString()}🧀`
 
-  if(totalCheese >= 1000){
+  if(totalCheese >= 1000 && document.getElementById('achieve1').hasAttribute('hidden')){
     document.getElementById('achieve1').removeAttribute('hidden')
     window.alert(`1,000 Total Cheese Mined!\nAchievement Unlocked: "I've seen feta."`)
   }
-  if(totalCheese >= 7500){
+  if(totalCheese >= 7500 && document.getElementById('achieve2').hasAttribute('hidden')){
     document.getElementById('achieve2').removeAttribute('hidden')
-    window.alert(`7,500 Total Cheese Mined!\nAchievement Unlocked: "I brie-lieve in you...`)
+    window.alert(`7,500 Total Cheese Mined!\nAchievement Unlocked: "I brie-lieve in you..."`)
   }
-  if(totalCheese >= 50000){
+  if(totalCheese >= 50000 && document.getElementById('achieve3').hasAttribute('hidden')){
     document.getElementById('achieve3').removeAttribute('hidden')
     window.alert(`50,000 Total Cheese Mined!\nAchievement Unlocked: "Wow! Gouda Job!"`)
   }
-  if(totalCheese >= 100000){
+  if(totalCheese >= 100000 && document.getElementById('achieve4').hasAttribute('hidden')){
     document.getElementById('achieve4').removeAttribute('hidden')
     window.alert(`100,000 Total Cheese Mined?!\nThat get's you the "I'm Blue (Da Ba Cheese Da Ba Mine)" Achievement! (Thank my girlfriend for that one)`)
   }
@@ -413,6 +493,7 @@ function drawUpgrades(){
   let mouseText = document.getElementById('mouseText')
   let tntText = document.getElementById('tntText')
   let alienText = document.getElementById('alienText')
+  let mothershipText = document.getElementById('mothershipText')
   let mouseStats = document.getElementById('mouseStats')
   let roverStats = document.getElementById('roverStats')
   let pickaxeStats = document.getElementById('pickStats')
@@ -452,6 +533,10 @@ function drawUpgrades(){
     <p class="nomb">Cheese/s * 2</p>`
     alienStats.innerHTML = `Alien?`
   }
+  if(cheese >= 100000 && mothership.quantity == 0){
+    mothershipText.innerHTML = `<p class="nomb">Mothership!</p>
+    <p class="nomb">Get your cheese every HALF second!</p>`
+  }
 
 
   mouseElem.innerHTML = `${mouse.price}<i class="mdi mdi-cheese"></i>`
@@ -471,6 +556,9 @@ function drawUpgrades(){
     autoTotal += auto
   })
   if(alien.quantity == 1){
+    autoTotal *= 2
+  }
+  if(mothership.quantity == 1){
     autoTotal *= 2
   }
   
