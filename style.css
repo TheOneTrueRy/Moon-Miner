@@ -1,4 +1,4 @@
-/* SECTION Elements */
+/* SECTION Elements & Other */
 
 .upgradeCardLeft::-webkit-scrollbar{
   width: 0px;
@@ -16,6 +16,11 @@ h1{
   font-weight: bold;
   text-shadow: 1px 5px 0px orange;
   font-size: 9vh;
+}
+
+@keyframes spinning{
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
 }
 
 /* SECTION Classes */
@@ -123,14 +128,19 @@ h1{
   height: 100%;
 }
 
-.badge{
-  height: 8vh;
-  width: auto;
+.achievement{
+  width: 13vh;
   transition: 0.3s;
-  user-select: none;
 }
 
-.badge:hover{
+.spin{
+  animation-name: spinning;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.achievement:hover{
   transform: scale(1.1);
 }
 

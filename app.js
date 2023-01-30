@@ -1,7 +1,5 @@
 let cheese = 0
 let totalCheese = 0
-let savedCheese = localStorage.cheese
-let savedTotalCheese = localStorage.totalCheese
 
 let alien = {
   name: 'alien',
@@ -381,6 +379,19 @@ function drawCheese(){
   <i class="mdi mdi-cheese"></i>: ${cheese}
   `
   title.innerText = `Moon Miner - ${cheese.toString()}🧀`
+
+  if(totalCheese >= 1000){
+    document.getElementById('achieve1').removeAttribute('hidden')
+  }
+  if(totalCheese >= 7500){
+    document.getElementById('achieve2').removeAttribute('hidden')
+  }
+  if(totalCheese >= 25000){
+    document.getElementById('achieve3').removeAttribute('hidden')
+  }
+  if(totalCheese >= 50000){
+    document.getElementById('achieve4').removeAttribute('hidden')
+  }
 }
 
 function drawUpgrades(){
@@ -496,21 +507,6 @@ function playBogos(){
   let bogos = document.getElementById('bogos-binted')
   // @ts-ignore
   bogos.play()
-}
-
-function showAchievement(num){
-  if(num == '1'){
-
-  }
-  if(num == '2'){
-    
-  }
-  if(num == '3'){
-    
-  }
-  if(num == '4'){
-    
-  }
 }
 
 drawCheese()
