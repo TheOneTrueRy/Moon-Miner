@@ -1,3 +1,19 @@
+// @ts-nocheck
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'center-end',
+  showConfirmButton: false,
+  timer: 5000,
+  background: '#fcbb15',
+  color: '#ffffff',
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
 let cheese = 0
 let totalCheese = 0
 let mouseElem = document.getElementById('mouseButton')
@@ -29,12 +45,14 @@ let alien = {
   name: 'alien',
   price: 25000,
   quantity: 0,
+  revealed: false
 }
 
 let mothership = {
   name: 'mothership',
   price: 100000,
   quantity: 0,
+  revealed: false
 }
 
 
@@ -44,21 +62,21 @@ let clickUpgrades = [
     price: 50,
     quantity: 0,
     multiplier: 1,
-
+    revealed: false
   },
   {
     name: 'drill',
     price: 250,
     quantity: 0,
     multiplier: 10,
-
+    revealed: false
   },
   {
     name: 'tnt',
     price: 1000,
     quantity: 0,
     multiplier: 50,
-
+    revealed: false
   }
 ]
 
@@ -68,16 +86,18 @@ let automaticUpgrades = [
     price: 100,
     quantity: 0,
     multiplier: 5,
-
+    revealed: false
   },
   {
     name: 'rover',
     price: 500,
     quantity: 0,
     multiplier: 25,
-
+    revealed: false
   }
 ]
+
+loadProgress()
 
 let mouse = automaticUpgrades.find(object => object.name == 'mousetronaut')
 let rover = automaticUpgrades.find(object => object.name == 'rover')
@@ -127,9 +147,9 @@ function buyPickaxe(){
     pickaxe.quantity += 1
     pickaxe.price += 50
   }
-drawCheese()
-drawUpgrades()
-drawPick()
+  drawPick()
+  drawCheese()
+  drawUpgrades()
 }
 
 function buyTNT(){
@@ -139,9 +159,9 @@ function buyTNT(){
     tnt.quantity += 1
     tnt.price += 1000
   }
-drawCheese()
-drawUpgrades()
-drawTNT()
+  drawTNT()
+  drawCheese()
+  drawUpgrades()
 }
 
 function buyDrill(){
@@ -151,9 +171,9 @@ function buyDrill(){
     drill.quantity += 1
     drill.price += 250
   }
+  drawDrill()
   drawCheese()
   drawUpgrades()
-  drawDrill()
 }
 
 let upgrades = 0
@@ -169,9 +189,9 @@ function buyMousetronaut(){
   if(upgrades == 1){
     startInterval()
   }
+  drawMouse()
   drawCheese()
   drawUpgrades()
-  drawMouse()
 }
 
 function buyRover(){
@@ -185,9 +205,9 @@ function buyRover(){
   if(upgrades == 1){
     startInterval()
   }
+  drawRover()
   drawCheese()
   drawUpgrades()
-  drawRover()
 }
 
 function buyAlien(){
@@ -218,9 +238,9 @@ function buyAlien(){
   }
   document.getElementById('alien').removeAttribute('hidden')
   playBogos()
+  drawAlien()
   drawCheese()
   drawUpgrades()
-  drawAlien()
 }
 
 function buyMothership(){
@@ -291,20 +311,37 @@ function drawCheese(){
   title.innerText = `Moon Miner - ${cheese.toString()}🧀`
 
   if(totalCheese >= 1000 && document.getElementById('achieve1').hasAttribute('hidden')){
+    Toast.fire(
+      '1,000 Total Cheese Mined',
+      "I've seen feta.",
+      'success'
+    )
     document.getElementById('achieve1').removeAttribute('hidden')
-    window.alert(`1,000 Total Cheese Mined!\nAchievement Unlocked: "I've seen feta."`)
   }
   if(totalCheese >= 7500 && document.getElementById('achieve2').hasAttribute('hidden')){
+    Toast.fire(
+      '7,500 Total Cheese Mined',
+      "I brie-lieve in you...",
+      'success'
+    )
     document.getElementById('achieve2').removeAttribute('hidden')
-    window.alert(`7,500 Total Cheese Mined!\nAchievement Unlocked: "I brie-lieve in you..."`)
   }
   if(totalCheese >= 50000 && document.getElementById('achieve3').hasAttribute('hidden')){
+    Toast.fire(
+      '50,000 Total Cheese Mined',
+      "Wow! Gouda job!",
+      'success'
+    )
     document.getElementById('achieve3').removeAttribute('hidden')
-    window.alert(`50,000 Total Cheese Mined!\nAchievement Unlocked: "Wow! Gouda Job!"`)
   }
   if(totalCheese >= 100000 && document.getElementById('achieve4').hasAttribute('hidden')){
+    Toast.fire(
+      '100,000 Total Cheese Mined',
+      "I'm Blue (Da Ba Cheese Da Ba Mine)",
+      "You can thank my girlfriend for that one...",
+      'success'
+    )
     document.getElementById('achieve4').removeAttribute('hidden')
-    window.alert(`100,000 Total Cheese Mined?!\nThat get's you the "I'm Blue (Da Ba Cheese Da Ba Mine)" Achievement! (Thank my girlfriend for that one)`)
   }
   if(cheese < mouse.price){
     mouseElem.setAttribute(`disabled`, '')
@@ -327,42 +364,51 @@ function drawCheese(){
   if(mothership.quantity == 1 || cheese < mothership.price){
     mothershipElem.setAttribute(`disabled`, '')
   }
+  window.localStorage.setItem('cheese', JSON.stringify(cheese))
+  window.localStorage.setItem('totalCheese', JSON.stringify(totalCheese))
 }
 
 function drawUpgrades(){
-  if(cheese >= 50){
+  if(cheese >= 50 || pickaxe.revealed == true){
     pickText.innerHTML = `<p class="nomb">Pickaxe!</p>
     <p class="nomb">Click Power +1</p>`
     pickaxeStats.innerHTML = `Pickaxes <i class="mdi mdi-arrow-right-bold"></i> ${pickaxe.quantity.toString()}`
+    pickaxe.revealed = true
   }
-  if(cheese >= 100){
+  if(cheese >= 100 || mouse.revealed == true){
     mouseText.innerHTML = `<p class="nomb">Mousetronaut!</p>
     <p class="nomb">5 Cheese/s</p>`
     mouseStats.innerHTML = `Mousetronauts <i class="mdi mdi-arrow-right-bold"></i> ${mouse.quantity.toString()}`
+    mouse.revealed = true
   }
-  if(cheese >= 250){
+  if(cheese >= 250 || drill.revealed == true){
     drillText.innerHTML = `<p class="nomb">Drill!</p>
     <p class="nomb">Click Power +10</p>`
     drillStats.innerHTML = `Drills <i class="mdi mdi-arrow-right-bold"></i> ${drill.quantity.toString()}`
+    drill.revealed = true
   }
-  if(cheese >= 500){
+  if(cheese >= 500 || rover.revealed == true){
     roverText.innerHTML = `<p class="nomb">Rover!</p>
     <p class="nomb">25 Cheese/s</p>`
     roverStats.innerHTML = `Rovers <i class="mdi mdi-arrow-right-bold"></i> ${rover.quantity.toString()}`
+    rover.revealed = true
   }
-  if(cheese >= 1000){
+  if(cheese >= 1000 || tnt.revealed == true){
     tntText.innerHTML = `<p class="nomb">TNT!</p>
     <p class="nomb">Click Power +50</p>`
     tntStats.innerHTML = `TNT <i class="mdi mdi-arrow-right-bold"></i> ${tnt.quantity.toString()}`
+    tnt.revealed = true
   }
-  if(cheese >= 25000 && alien.quantity == 0){
+  if(cheese >= 25000 && alien.quantity == 0 || alien.revealed == true){
     alienText.innerHTML = `<p class="nomb">Alien!</p>
     <p class="nomb">Cheese/s * 2</p>`
     alienStats.innerHTML = `Alien?`
+    alien.revealed = true
   }
-  if(cheese >= 100000 && mothership.quantity == 0){
+  if(cheese >= 100000 && mothership.quantity == 0 || mothership.revealed == true){
     mothershipText.innerHTML = `<p class="nomb">Mothership!</p>
     <p class="nomb">Get your cheese every HALF second!</p>`
+    mothership.revealed = true
   }
 
 
@@ -387,7 +433,7 @@ function drawUpgrades(){
     autoTotal *= 2
     window.localStorage.setItem('mothership', JSON.stringify(mothership))
   }
-  
+
   mouseElem.innerHTML = `${mouse.price}<i class="mdi mdi-cheese"></i>`
   roverElem.innerHTML = `${rover.price}<i class="mdi mdi-cheese"></i>`
   pickaxeElem.innerHTML = `${pickaxe.price}<i class="mdi mdi-cheese"></i>`
@@ -395,6 +441,9 @@ function drawUpgrades(){
   tntElem.innerHTML = `${tnt.price}<i class="mdi mdi-cheese"></i>`
   autoElem.innerHTML = `Cheese / Sec <i class="mdi mdi-arrow-right-bold"></i> ${autoTotal}`
   clickElem.innerHTML = `Cheese / Click <i class="mdi mdi-arrow-right-bold"></i> ${mineAmount}`
+
+  window.localStorage.setItem('autoUpgrades', JSON.stringify(automaticUpgrades))
+  window.localStorage.setItem('clickUpgrades', JSON.stringify(clickUpgrades))
 }
 
 function drawPick(){
@@ -426,6 +475,33 @@ function playBogos(){
   let bogos = document.getElementById('bogos-binted')
   // @ts-ignore
   bogos.play()
+}
+
+function loadProgress(){
+  let cheeseData = JSON.parse(window.localStorage.getItem('cheese'))
+  let totalCheeseData = JSON.parse(window.localStorage.getItem('totalCheese'))
+  let clickUpgradesData = JSON.parse(window.localStorage.getItem('clickUpgrades'))
+  let autoUpgradesData = JSON.parse(window.localStorage.getItem('autoUpgrades'))
+  let alienData = JSON.parse(window.localStorage.getItem('alien'))
+  let mothershipData = JSON.parse(window.localStorage.getItem('mothership'))
+  if(cheeseData){
+    cheese = cheeseData
+  }
+  if(totalCheeseData){
+    totalCheese = totalCheeseData
+  }
+  if(clickUpgradesData){
+    clickUpgrades = clickUpgradesData
+  }
+  if(autoUpgradesData){
+    automaticUpgrades = autoUpgradesData
+  }
+  if(alienData){
+    alien.quantity = 1
+  }
+  if(mothershipData){
+    mothership.quantity = 1
+  }
 }
 
 drawCheese()
