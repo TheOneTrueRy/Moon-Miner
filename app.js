@@ -29,12 +29,14 @@ let alien = {
   name: 'alien',
   price: 25000,
   quantity: 0,
+  revealed: false
 }
 
 let mothership = {
   name: 'mothership',
   price: 100000,
-  quantity: 0
+  quantity: 0,
+  revealed: false
 }
 
 
@@ -43,19 +45,22 @@ let clickUpgrades = [
     name: 'pickaxe',
     price: 50,
     quantity: 0,
-    multiplier: 1
+    multiplier: 1,
+    revealed: false
   },
   {
     name: 'drill',
     price: 250,
     quantity: 0,
-    multiplier: 10
+    multiplier: 10,
+    revealed: false
   },
   {
     name: 'tnt',
     price: 1000,
     quantity: 0,
     multiplier: 50,
+    revealed: false
   }
 ]
 
@@ -64,13 +69,15 @@ let automaticUpgrades = [
     name: 'mousetronaut',
     price: 100,
     quantity: 0,
-    multiplier: 5
+    multiplier: 5,
+    revealed: false
   },
   {
     name: 'rover',
     price: 500,
     quantity: 0,
-    multiplier: 25
+    multiplier: 25,
+    revealed: false
   }
 ]
 
@@ -322,97 +329,104 @@ function drawCheese(){
   if(mothership.quantity == 1 || cheese < mothership.price){
     mothershipElem.setAttribute(`disabled`, '')
   }
+  window.localStorage.setItem('cheese', JSON.stringify(cheese))
+  window.localStorage.setItem('totalCheese', JSON.stringify(totalCheese))
 }
 
 function drawUpgrades(){
-  if(cheese >= 50){
+  if(cheese >= 50 || pickaxe.revealed == true){
     pickText.innerHTML = `<p class="nomb">Pickaxe!</p>
     <p class="nomb">Click Power +1</p>`
     pickaxeStats.innerHTML = `Pickaxes <i class="mdi mdi-arrow-right-bold"></i> ${pickaxe.quantity.toString()}`
+    pickaxe.revealed = true
   }
-  if(cheese >= 100){
+  if(cheese >= 100 || mouse.revealed == true){
     mouseText.innerHTML = `<p class="nomb">Mousetronaut!</p>
     <p class="nomb">5 Cheese/s</p>`
     mouseStats.innerHTML = `Mousetronauts <i class="mdi mdi-arrow-right-bold"></i> ${mouse.quantity.toString()}`
+    mouse.revealed = true
   }
-  if(cheese >= 250){
+  if(cheese >= 250 || drill.revealed == true){
     drillText.innerHTML = `<p class="nomb">Drill!</p>
     <p class="nomb">Click Power +10</p>`
     drillStats.innerHTML = `Drills <i class="mdi mdi-arrow-right-bold"></i> ${drill.quantity.toString()}`
+    drill.revealed = true
   }
-  if(cheese >= 500){
+  if(cheese >= 500 || rover.revealed == true){
     roverText.innerHTML = `<p class="nomb">Rover!</p>
     <p class="nomb">25 Cheese/s</p>`
     roverStats.innerHTML = `Rovers <i class="mdi mdi-arrow-right-bold"></i> ${rover.quantity.toString()}`
+    rover.revealed = true
   }
-  if(cheese >= 1000){
+  if(cheese >= 1000 || tnt.revealed == true){
     tntText.innerHTML = `<p class="nomb">TNT!</p>
     <p class="nomb">Click Power +50</p>`
     tntStats.innerHTML = `TNT <i class="mdi mdi-arrow-right-bold"></i> ${tnt.quantity.toString()}`
+    tnt.revealed = true
   }
-  if(cheese >= 25000 && alien.quantity == 0){
+  if(cheese >= 25000 && alien.quantity == 0 || alien.revealed == true){
     alienText.innerHTML = `<p class="nomb">Alien!</p>
     <p class="nomb">Cheese/s * 2</p>`
     alienStats.innerHTML = `Alien?`
+    alien.revealed = true
   }
-  if(cheese >= 100000 && mothership.quantity == 0){
+  if(cheese >= 100000 && mothership.quantity == 0 || mothership.revealed == true){
     mothershipText.innerHTML = `<p class="nomb">Mothership!</p>
     <p class="nomb">Get your cheese every HALF second!</p>`
+    mothership.revealed = true
   }
 
 
+  
+  let mineAmount = 1
+  clickUpgrades.forEach(upgrade => {
+    let amount = upgrade.quantity * upgrade.multiplier
+    mineAmount += amount
+  })
+  
+  let autoTotal = 0
+  automaticUpgrades.forEach(upgrade => {
+    let auto = upgrade.quantity * upgrade.multiplier
+    autoTotal += auto
+  })
+  
+  if(alien.quantity == 1){
+    autoTotal *= 2
+    window.localStorage.setItem('alien', JSON.stringify(alien))
+  }
+  if(mothership.quantity == 1){
+    autoTotal *= 2
+    window.localStorage.setItem('mothership', JSON.stringify(mothership))
+  }
+  
   mouseElem.innerHTML = `${mouse.price}<i class="mdi mdi-cheese"></i>`
   roverElem.innerHTML = `${rover.price}<i class="mdi mdi-cheese"></i>`
   pickaxeElem.innerHTML = `${pickaxe.price}<i class="mdi mdi-cheese"></i>`
   drillElem.innerHTML = `${drill.price}<i class="mdi mdi-cheese"></i>`
   tntElem.innerHTML = `${tnt.price}<i class="mdi mdi-cheese"></i>`
-  
-let mineAmount = 1
-clickUpgrades.forEach(upgrade => {
-  let amount = upgrade.quantity * upgrade.multiplier
-  mineAmount += amount
-})
+  autoElem.innerHTML = `Cheese / Sec <i class="mdi mdi-arrow-right-bold"></i> ${autoTotal}`
+  clickElem.innerHTML = `Cheese / Click <i class="mdi mdi-arrow-right-bold"></i> ${mineAmount}`
 
-let autoTotal = 0
-automaticUpgrades.forEach(upgrade => {
-  let auto = upgrade.quantity * upgrade.multiplier
-  autoTotal += auto
-})
-  
-  if(alien.quantity == 1){
-    autoTotal *= 2
-  }
-  if(mothership.quantity == 1){
-    autoTotal *= 2
-  }
-  
-  autoElem.innerHTML = `Cheese / Sec <i class="mdi mdi-arrow-right-bold"></i> ${autoTotal.toString()}`
-  clickElem.innerHTML = `Cheese / Click <i class="mdi mdi-arrow-right-bold"></i> ${mineAmount.toString()}`
+  window.localStorage.setItem('autoUpgrades', JSON.stringify(automaticUpgrades))
+  window.localStorage.setItem('clickUpgrades', JSON.stringify(clickUpgrades))
 }
 
 function drawPick(){
-  let pickaxeStats = document.getElementById('pickStats')
-  pickaxeStats.innerHTML = `Pickaxes <i class="mdi mdi-arrow-right-bold"></i> ${pickaxe.quantity.toString()}`
+  pickaxeStats.innerHTML = `Pickaxes <i class="mdi mdi-arrow-right-bold"></i> ${pickaxe.quantity}`
 }
 function drawDrill(){
-  let drillStats = document.getElementById('drillStats')
-  drillStats.innerHTML = `Drills <i class="mdi mdi-arrow-right-bold"></i> ${drill.quantity.toString()}`
+  drillStats.innerHTML = `Drills <i class="mdi mdi-arrow-right-bold"></i> ${drill.quantity}`
 }
 function drawTNT(){
-  let tntStats = document.getElementById('tntStats')
-  tntStats.innerHTML = `TNT <i class="mdi mdi-arrow-right-bold"></i> ${tnt.quantity.toString()}`
+  tntStats.innerHTML = `TNT <i class="mdi mdi-arrow-right-bold"></i> ${tnt.quantity}`
 }
 function drawMouse(){
-  let mouseStats = document.getElementById('mouseStats')
-  mouseStats.innerHTML = `Mousetronauts <i class="mdi mdi-arrow-right-bold"></i> ${mouse.quantity.toString()}`
+  mouseStats.innerHTML = `Mousetronauts <i class="mdi mdi-arrow-right-bold"></i> ${mouse.quantity}`
 }
 function drawRover(){
-  let roverStats = document.getElementById('roverStats')
-  roverStats.innerHTML = `Rovers <i class="mdi mdi-arrow-right-bold"></i> ${rover.quantity.toString()}`
+  roverStats.innerHTML = `Rovers <i class="mdi mdi-arrow-right-bold"></i> ${rover.quantity}`
 }
 function drawAlien(){
-  let alienStats = document.getElementById('alienStats')
-  // @ts-ignore
   alienStats.innerHTML = `Alien? <i class="mdi mdi-checkbox-marked green"></i> `
 }
 
@@ -428,5 +442,33 @@ function playBogos(){
   bogos.play()
 }
 
+function loadProgress(){
+  let cheeseData = JSON.parse(window.localStorage.getItem('cheese'))
+  let totalCheeseData = JSON.parse(window.localStorage.getItem('totalCheese'))
+  let clickUpgradesData = JSON.parse(window.localStorage.getItem('clickUpgrades'))
+  let autoUpgradesData = JSON.parse(window.localStorage.getItem('autoUpgrades'))
+  let alienData = JSON.parse(window.localStorage.getItem('alien'))
+  let mothershipData = JSON.parse(window.localStorage.getItem('mothership'))
+  if(cheeseData){
+    cheese = cheeseData
+  }
+  if(totalCheeseData){
+    totalCheese = totalCheeseData
+  }
+  if(clickUpgradesData){
+    clickUpgrades = clickUpgradesData
+  }
+  if(autoUpgradesData){
+    automaticUpgrades = autoUpgradesData
+  }
+  if(alienData){
+    alien.quantity = 1
+  }
+  if(mothershipData){
+    mothership.quantity = 1
+  }
+}
+
+loadProgress()
 drawCheese()
 drawUpgrades()
