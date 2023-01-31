@@ -1,3 +1,19 @@
+// @ts-nocheck
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'center-end',
+  showConfirmButton: false,
+  timer: 5000,
+  background: '#fcbb15',
+  color: '#ffffff',
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
 let cheese = 0
 let totalCheese = 0
 let mouseElem = document.getElementById('mouseButton')
@@ -81,6 +97,8 @@ let automaticUpgrades = [
   }
 ]
 
+loadProgress()
+
 let mouse = automaticUpgrades.find(object => object.name == 'mousetronaut')
 let rover = automaticUpgrades.find(object => object.name == 'rover')
 let pickaxe = clickUpgrades.find(object => object.name == 'pickaxe')
@@ -129,9 +147,9 @@ function buyPickaxe(){
     pickaxe.quantity += 1
     pickaxe.price += 50
   }
-drawCheese()
-drawUpgrades()
-drawPick()
+  drawPick()
+  drawCheese()
+  drawUpgrades()
 }
 
 function buyTNT(){
@@ -141,9 +159,9 @@ function buyTNT(){
     tnt.quantity += 1
     tnt.price += 1000
   }
-drawCheese()
-drawUpgrades()
-drawTNT()
+  drawTNT()
+  drawCheese()
+  drawUpgrades()
 }
 
 function buyDrill(){
@@ -153,9 +171,9 @@ function buyDrill(){
     drill.quantity += 1
     drill.price += 250
   }
+  drawDrill()
   drawCheese()
   drawUpgrades()
-  drawDrill()
 }
 
 let upgrades = 0
@@ -171,9 +189,9 @@ function buyMousetronaut(){
   if(upgrades == 1){
     startInterval()
   }
+  drawMouse()
   drawCheese()
   drawUpgrades()
-  drawMouse()
 }
 
 function buyRover(){
@@ -187,9 +205,9 @@ function buyRover(){
   if(upgrades == 1){
     startInterval()
   }
+  drawRover()
   drawCheese()
   drawUpgrades()
-  drawRover()
 }
 
 function buyAlien(){
@@ -220,9 +238,9 @@ function buyAlien(){
   }
   document.getElementById('alien').removeAttribute('hidden')
   playBogos()
+  drawAlien()
   drawCheese()
   drawUpgrades()
-  drawAlien()
 }
 
 function buyMothership(){
@@ -293,20 +311,37 @@ function drawCheese(){
   title.innerText = `Moon Miner - ${cheese.toString()}🧀`
 
   if(totalCheese >= 1000 && document.getElementById('achieve1').hasAttribute('hidden')){
+    Toast.fire(
+      '1,000 Total Cheese Mined',
+      "I've seen feta.",
+      'success'
+    )
     document.getElementById('achieve1').removeAttribute('hidden')
-    window.alert(`1,000 Total Cheese Mined!\nAchievement Unlocked: "I've seen feta."`)
   }
   if(totalCheese >= 7500 && document.getElementById('achieve2').hasAttribute('hidden')){
+    Toast.fire(
+      '7,500 Total Cheese Mined',
+      "I brie-lieve in you...",
+      'success'
+    )
     document.getElementById('achieve2').removeAttribute('hidden')
-    window.alert(`7,500 Total Cheese Mined!\nAchievement Unlocked: "I brie-lieve in you..."`)
   }
   if(totalCheese >= 50000 && document.getElementById('achieve3').hasAttribute('hidden')){
+    Toast.fire(
+      '50,000 Total Cheese Mined',
+      "Wow! Gouda job!",
+      'success'
+    )
     document.getElementById('achieve3').removeAttribute('hidden')
-    window.alert(`50,000 Total Cheese Mined!\nAchievement Unlocked: "Wow! Gouda Job!"`)
   }
   if(totalCheese >= 100000 && document.getElementById('achieve4').hasAttribute('hidden')){
+    Toast.fire(
+      '100,000 Total Cheese Mined',
+      "I'm Blue (Da Ba Cheese Da Ba Mine)",
+      "You can thank my girlfriend for that one...",
+      'success'
+    )
     document.getElementById('achieve4').removeAttribute('hidden')
-    window.alert(`100,000 Total Cheese Mined?!\nThat get's you the "I'm Blue (Da Ba Cheese Da Ba Mine)" Achievement! (Thank my girlfriend for that one)`)
   }
   if(cheese < mouse.price){
     mouseElem.setAttribute(`disabled`, '')
@@ -398,7 +433,7 @@ function drawUpgrades(){
     autoTotal *= 2
     window.localStorage.setItem('mothership', JSON.stringify(mothership))
   }
-  
+
   mouseElem.innerHTML = `${mouse.price}<i class="mdi mdi-cheese"></i>`
   roverElem.innerHTML = `${rover.price}<i class="mdi mdi-cheese"></i>`
   pickaxeElem.innerHTML = `${pickaxe.price}<i class="mdi mdi-cheese"></i>`
@@ -467,8 +502,9 @@ function loadProgress(){
   if(mothershipData){
     mothership.quantity = 1
   }
+  debugger
 }
 
-loadProgress()
+// loadProgress()
 drawCheese()
 drawUpgrades()
