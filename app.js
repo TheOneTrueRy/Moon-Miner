@@ -80,19 +80,13 @@ let pickaxe = clickUpgrades.find(object => object.name == 'pickaxe')
 let drill = clickUpgrades.find(object => object.name == 'drill')
 let tnt = clickUpgrades.find(object => object.name == 'tnt')
 
-let mineAmount = 1
+
+function mine(){
+  let mineAmount = 1
 clickUpgrades.forEach(upgrade => {
   let amount = upgrade.quantity * upgrade.multiplier
   mineAmount += amount
 })
-
-let autoTotal = 0
-automaticUpgrades.forEach(upgrade => {
-  let auto = upgrade.quantity * upgrade.multiplier
-  autoTotal += auto
-})
-
-function mine(){
   if(cheese >= pickaxe.price - mineAmount){
     pickaxeElem.removeAttribute(`disabled`)
   } 
@@ -238,6 +232,11 @@ function buyMothership(){
 }
 
 function collectAutoUpgrades(){
+  let autoTotal = 0
+automaticUpgrades.forEach(upgrade => {
+  let auto = upgrade.quantity * upgrade.multiplier
+  autoTotal += auto
+})
   if(cheese >= pickaxe.price - autoTotal){
     pickaxeElem.removeAttribute(`disabled`)
   } 
@@ -367,6 +366,18 @@ function drawUpgrades(){
   pickaxeElem.innerHTML = `${pickaxe.price}<i class="mdi mdi-cheese"></i>`
   drillElem.innerHTML = `${drill.price}<i class="mdi mdi-cheese"></i>`
   tntElem.innerHTML = `${tnt.price}<i class="mdi mdi-cheese"></i>`
+  
+let mineAmount = 1
+clickUpgrades.forEach(upgrade => {
+  let amount = upgrade.quantity * upgrade.multiplier
+  mineAmount += amount
+})
+
+let autoTotal = 0
+automaticUpgrades.forEach(upgrade => {
+  let auto = upgrade.quantity * upgrade.multiplier
+  autoTotal += auto
+})
   
   if(alien.quantity == 1){
     autoTotal *= 2
