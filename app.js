@@ -16,6 +16,7 @@ const Toast = Swal.mixin({
 
 let cheese = 0
 let totalCheese = 0
+let upgrades = 0
 let mouseElem = document.getElementById('mouseButton')
 let roverElem = document.getElementById('roverButton')
 let pickaxeElem = document.getElementById('pickaxeButton')
@@ -175,8 +176,6 @@ function buyDrill(){
   drawCheese()
   drawUpgrades()
 }
-
-let upgrades = 0
 
 function buyMousetronaut(){
   let mousetronaut = automaticUpgrades.find(object => object.name == 'mousetronaut')
@@ -444,6 +443,7 @@ function drawUpgrades(){
 
   window.localStorage.setItem('autoUpgrades', JSON.stringify(automaticUpgrades))
   window.localStorage.setItem('clickUpgrades', JSON.stringify(clickUpgrades))
+  window.localStorage.setItem('upgrades', JSON.stringify(upgrades))
 }
 
 function drawPick(){
@@ -484,6 +484,10 @@ function loadProgress(){
   let autoUpgradesData = JSON.parse(window.localStorage.getItem('autoUpgrades'))
   let alienData = JSON.parse(window.localStorage.getItem('alien'))
   let mothershipData = JSON.parse(window.localStorage.getItem('mothership'))
+  let upgradesData = JSON.parse(window.localStorage.getItem('upgrades'))
+  if(upgradesData){
+    upgrades = upgradesData
+  }
   if(cheeseData){
     cheese = cheeseData
   }
@@ -502,7 +506,71 @@ function loadProgress(){
   if(mothershipData){
     mothership.quantity = 1
   }
+  if(upgrades > 0){
+    startInterval()
+  }
 }
+
+// function resetGame(){
+//   cheese = 0
+//   totalCheese = 0
+//   IDs = []
+//   alien = {
+//     name: 'alien',
+//     price: 25000,
+//     quantity: 0,
+//     revealed: false
+//   }
+//   mothership = {
+//     name: 'mothership',
+//     price: 100000,
+//     quantity: 0,
+//     revealed: false
+//   }
+// clickUpgrades = [
+//   {
+//     name: 'pickaxe',
+//     price: 50,
+//     quantity: 0,
+//     multiplier: 1,
+//     revealed: false
+//   },
+//   {
+//     name: 'drill',
+//     price: 250,
+//     quantity: 0,
+//     multiplier: 10,
+//     revealed: false
+//   },
+//   {
+//     name: 'tnt',
+//     price: 1000,
+//     quantity: 0,
+//     multiplier: 50,
+//     revealed: false
+//   }
+// ]
+
+// automaticUpgrades = [
+//   {
+//     name: 'mousetronaut',
+//     price: 100,
+//     quantity: 0,
+//     multiplier: 5,
+//     revealed: false
+//   },
+//   {
+//     name: 'rover',
+//     price: 500,
+//     quantity: 0,
+//     multiplier: 25,
+//     revealed: false
+//   }
+// ]
+// localStorage.clear()
+// drawCheese()
+// drawUpgrades()
+// }
 
 drawCheese()
 drawUpgrades()
